@@ -1,6 +1,0 @@
-# Ho inserito il contenuto di questo file all'interno di "httpd.config" come consigliato da apache
-
-# RewriteEngine on
-# RewriteCond %{REQUEST_FILENAME} !-d
-# RewriteCond %{REQUEST_FILENAME} !-f
-# RewriteRule . index.php [L]
