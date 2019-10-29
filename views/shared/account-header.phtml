@@ -1,0 +1,33 @@
+<?php include "views/shared/header.phtml"; ?>
+
+<section id="profile">
+    <div id="profile-header">
+        <div id="img-cont">
+            <img src="/assets/icons/profile.svg" alt="icona profilo">
+        </div>
+        <h2><?= $_SESSION["User"]["Username"] ?></h2>
+    </div>
+    <div id="nav">
+        <a href="/Profilo/Impostazioni">
+            <div>
+                <p class="text-dark">Impostazioni profilo</p>
+            </div>
+        </a>
+        <a href="/Profilo/Indirizzi">
+            <div>
+                <p class="text-dark">Indirizzi salvati</p>
+            </div>
+        </a>
+        <a href="/Profilo/Ordini">
+            <div>
+                <p class="text-dark">Ordini</p>
+            </div>
+        </a>
+        <a href="/Profilo/Logout">
+            <div>
+                <p class="text-dark">Esci</p>
+            </div>
+        </a>
+    </div>
+    
+    <div id="profile-data">

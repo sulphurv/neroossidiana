@@ -1,0 +1,31 @@
+<?php include "views/shared/header.phtml"; ?>
+
+<section id="support-section" class="container">
+    <?php
+    foreach ($data as $line) { ?>
+        <?php
+        if ($line == "\n") {
+            continue;
+        } ?>
+        <?php if (preg_match('/^-h1|-h2 /', $line)) { ?>
+
+            <?php if (preg_match('/^-h1 /', $line)) { ?>
+
+            <h1><?= preg_replace('/^-h1 /', "", $line) ?></h1>
+
+            <?php } ?>
+
+            <?php if (preg_match('/^-h2 /', $line)) { ?>
+
+            <h2><?= preg_replace('/^-h2 /', "", $line) ?></h2>
+
+            <?php } ?>
+
+        <?php } else { ?>
+            <p><?= $line ?></p>
+        <?php
+        }
+    } ?>
+</section>
+
+<?php include "views/shared/footer.phtml"; ?>

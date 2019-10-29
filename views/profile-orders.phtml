@@ -1,0 +1,50 @@
+<?php include "views/shared/account-header.phtml"; ?>
+
+    <section id="profile-orders" class="container">
+        <?php if (count($orders) > 0) { ?>
+        <?php foreach($orders as $order) { ?>
+        <div class="order">
+            <div class="header">
+                <p class="date"><span>Ordine effettuato il </span><?= $order["Date"] ?></p>
+                <?php if ($order["Shipped"]) { ?>
+                <p>Spedito</p>
+                <?php } else { ?>
+                <p id="state">In lavorazione</p>
+                <?php } ?>
+            </div>
+            <?php foreach($order["Products"] as $product) { ?>
+            <div class="product row justify-content-start">
+                <div class="img-cont">
+                    <div class="img-canvas" style="background-image: url('/assets/images/<?php echo (explode(", ", $product["Images"]))[0]; ?>');"></div>
+                </div>
+                <div class="prod-details">
+                    <div class="name">
+                        <p><?= $product["Name"] ?></p>
+                    </div>
+                    <?php if (isset($product["Size"])) { ?>
+                    <div class="size detail">
+                        <p>Misura: <?= strtoupper($product["Size"]) ?></p>
+                    </div>
+                    <?php } ?>
+                    <?php if (isset($product["Color"])) { ?>
+                    <div class="color detail">
+                        Colore: <span style="background-color: <?= $product["Color"] ?>;"></span>
+                    </div>
+                    <?php } ?>
+                    <div class="price detail">
+                        <p>Prezzo: <?= ucfirst($product["Price"]) ?> €</p>
+                    </div>
+                </div>
+            </div>
+            <?php } ?>
+            <div class="total">
+                <p>Totale:<span><?= $order["Amount"] ?> €</span></p>
+            </div>
+        </div>
+        <?php }
+        } else { ?>
+        <div id="empty"><span>Nessun ordine effettuato</span></div>
+        <?php } ?>
+    </section>
+
+<?php include "views/shared/account-footer.phtml"; ?> 

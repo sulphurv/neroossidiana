@@ -1,0 +1,31 @@
+<?php include "views/shared/admin-header.phtml" ?>
+
+<section id="admin-login" class="row justify-content-center align-items-start" class="container">
+    <div id="admin-login-cont">
+        <form action="/Admin" method="POST" class="needs-validation" novalidate>
+            <h2 class="text-center">Admin Login</h2>
+            <div class="form-group">
+                <label for="name">Nome</label>
+                <input type="text" class="form-control rounded-0" id="name" aria-describedby="name" name="name" placeholder="Inserisci nome" value="" pattern="^[a-zA-Z]+$" required>
+                <div class="invalid-feedback"></div>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" class="form-control rounded-0" id="password" name="password" placeholder="Password" required>
+                <div class="invalid-feedback"></div>
+            </div>
+            <div class="row justify-content-center">
+                <button id="login-btn" type="submit" class="rounded-0 btn btn-white col-6">Accedi</button>
+            </div>
+            <?php if ($error) { ?>
+            <div class="row justify-content-center">
+                <p class="error"><?= $error ?></p>
+            </div>
+            <?php } ?>
+        </form>
+    </div>
+</section>
+
+<script src="/assets/js/admin-login.js"></script>
+
+<?php include "views/shared/admin-footer.phtml" ?>

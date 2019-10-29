@@ -1,0 +1,131 @@
+<?php include "views/shared/header.phtml"; ?>
+
+<?php if (count($_SESSION["Cart"]) > 0) { ?>
+
+    <section id="cart" class="container">
+        <div id="cont1-wrapper">
+            <div id="cont1">
+                <div id="cart-header" class="grid hide-header">
+                    <p>Prodotto</p>
+                    <p>Descrizione</p>
+                    <p class="hide-c">Quantità</p>
+                    <p>Prezzo</p>
+                </div>
+
+                <?php
+                $index = 0;
+                foreach ($_SESSION["Cart"] as $cartItem) { ?>
+                    <div class="cart-item grid">
+                        <div class="img-cont">
+                            <?php if ($cartItem->product["Discount"]) { ?>
+                                <div class="discount"><span class="center-align">-<?= $cartItem->product["Discount"] ?>%</span></div>
+                            <?php } ?>
+                            <img src="<?= "/assets/images/" . $cartItem->product["Images"][0] ?>" alt="cart item image">
+                        </div>
+                        <div class="description-cont">
+                            <p class="name"><?= $cartItem->product["Name"] ?></p>
+                            <p class="type"><?= $cartItem->product["Type"] ?></p>
+                            <?php if ($cartItem->product["Size"]) { ?>
+                                <p class="size">Taglia: <span><?= strtoupper($cartItem->product["Size"]); ?></span></p>
+                            <?php } ?>
+                            <?php if ($cartItem->product["Color"]) { ?>
+                                <p class="color">Colore: <span style="background-color: <?= $cartItem->product["Color"] ?>"></span></p>
+                            <?php } ?>
+                            <p class="availability">
+                                <?php
+                                switch ($cartItem->product["Availability"]) {
+                                    case "green":
+                                        echo '<span class="green">Disponibilità immediata</span>';
+                                        break;
+                                    case "yellow":
+                                        echo '<span class="yellow">Disponibilità tra 2 settimane</span>';
+                                        break;
+                                    case "red":
+                                        echo '<span class="red">Disponoibilità tra 4 settimane.</span>';
+                                        break;
+                                    default:
+                                        break;
+                                } ?>
+                            </p>
+                        </div>
+                        <div class="quantity-cont">
+                            <form action="/Carrello" method="POST">
+                                <span class="hide2">Quantità:</span>
+                                <input type="hidden" name="_method" value="PATCH">
+                                <select class="custom-select rounded-0" name="quantity" onchange="this.form.submit()">
+                                    <?php for ($i = 1; $i <= 10; $i++) { ?>
+                                        <option value="<?= $i ?>" <?php echo $cartItem->quantity == $i ? "selected" : ""; ?>><?= $i ?></option>
+                                    <?php } ?>
+                                    <input type="hidden" name="index" value="<?= $index ?>">
+                                </select>
+                            </form>
+                        </div>
+                        <div class="price-cont">
+                            <p class="<?= $cartItem->product["Discount"] ? "line-through" : "" ?>"><?= ($cartItem->product["Price"] * $cartItem->quantity) ?>€</p>
+                            <?php if ($cartItem->product["Discount"]) { ?>
+                                <p class="discounted-price"><?= ($cartItem->product["EndPrice"] * $cartItem->quantity) ?>€</p>
+                            <?php } ?>
+                        </div>
+                        <div class="modify-cont">
+                            <form action="/Carrello" method="POST">
+                                <input type="hidden" name="_method" value="DELETE">
+                                <input type="hidden" name="index" value="<?= $index ?>">
+                                <input class="submit" type="submit" value="Rimuovi">
+                            </form>
+                        </div>
+                    </div>
+                    <?php
+                    $index++;
+                } ?>
+
+                <div id="delivery-costs-cont">
+                    <div id="img-cont-2"><i class="fa fa-truck"></i></div>
+                    <div id="delivery-description">
+                        <p><span><?= $deliveryDate ?></span></p>
+                    </div>
+                    <div id="delivery-cost-1">
+                        <p><?= "+ 6.95€" ?></p>
+                    </div>
+                </div>
+
+                <div id="total-1" class="total-grid">
+                    <div>
+                        <p>Totale (<?= count($_SESSION["Cart"]) ?> Articoli)</p>
+                    </div>
+                    <div>
+                        <p><?= $total + $shippingCosts ?>€</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="cont-2-wrapper">
+            <div id="cont2">
+                <div id="subtotal" class="flex">
+                    <p>Subtotale (<?= count($_SESSION["Cart"]) ?> Articoli)</p>
+                    <p><?= $total ?>€</p>
+                </div>
+                <div id="delivery-costs-2" class="flex">
+                    <p>Spedizione</p>
+                    <p>+ <?= $shippingCosts ?></p>
+                </div>
+                <div id="total-2" class="flex">
+                    <p>Totale</p>
+                    <p><?= $total + $shippingCosts ?>€</p>
+                </div>
+                <div id="btn-cont">
+                    <a href="/Checkout" class="btn btn-white rounded-0" id="checkout-btn">Procedi con l'ordine</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<?php } else { ?>
+
+    <div id="empty-cart">
+        <h2 id="no-products">Nessun articolo nel carrello</h2>
+    </div>
+
+<?php } ?>
+
+<?php include "views/shared/footer.phtml"; ?>

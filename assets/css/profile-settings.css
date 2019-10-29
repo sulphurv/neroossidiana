@@ -1,0 +1,82 @@
+#profile-settings label,
+#profile-settings .form-control,
+#profile-settings button,
+#profile-settings #remove-profile p {
+    font-family: var(--nav-font-family);
+}
+
+#profile-settings .text-success {
+    font-size: 1.25rem;
+    animation-name: Fade-in;
+    animation-duration: 3s;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-in-out; 
+    animation-fill-mode: forwards;
+}
+
+#remove-profile {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 45px;
+    border-top: 1px solid black;
+}
+
+#remove-profile div {
+	height: 45px;
+}
+
+#remove-profile div p {
+    line-height: 45px;
+}
+
+#remove-profile div p:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+#profile-settings button {
+    font-weight: bold;
+}
+
+#profile-settings #remove-profile p {
+    font-weight: bold;
+}
+
+@keyframes Fade-in {
+    0% {
+        opacity: 0;
+    }
+    20% {
+        opacity: 1;
+    }
+    40% {
+        opacity: 0;
+    }
+    60% {
+        opacity: 1;
+    }
+    100% {
+        display: none;
+        opacity: 0;
+    }
+}
+
+@media screen and (min-width: 20em) {
+
+}
+
+@media screen and (min-width: 35.5em) {
+
+}
+
+@media screen and (min-width: 48em) {
+
+}
+
+@media screen and (min-width: 64em) {
+
+}
+
+@media screen and (min-width: 80em) {
+    
+}

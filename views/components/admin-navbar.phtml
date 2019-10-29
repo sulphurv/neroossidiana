@@ -1,0 +1,55 @@
+<style>
+    #admin-navbar {
+        width: 100%;
+        height: 60px;
+        display: flex;
+        flex-wrap: nowrap;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 1000;
+        background: rgba(52,52,52,0.9);
+    }
+
+    #admin-navbar a {
+        flex: 0 0 200px;
+        height: 100%;
+        position: relative;
+        text-decoration: none;
+    }
+
+    #admin-navbar div {
+        text-align: center;
+        line-height: 60px;
+        color: #fff;
+        font-weight: bold;
+        font-size: 1.2em;
+    }
+
+    #admin-navbar span {
+        width: 0;
+        height: 3px;
+        display: inline-block;
+        position: absolute;
+        bottom: 2px;
+        left: 50%;
+        background: #fff;
+        transition: .2s ease;
+    }
+
+    #admin-navbar a:hover span {
+        width: 170px;
+        left: 15px;
+    }
+</style>
+
+<nav id="admin-navbar" class="hide-right" data-expand="false">
+    <a href="/Admin/Prodotti">
+        <div>Prodotti</div>
+        <span></span>
+    </a>
+    <a href="/Admin/Ordini">
+        <div>Ordini</div>
+        <span></span>
+    </a>
+</nav>

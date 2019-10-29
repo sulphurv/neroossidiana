@@ -1,0 +1,21 @@
+#support-section h1,
+#support-section h2,
+#support-section p {
+    font-family: var(--nav-font-family);
+}
+
+#support-section h1 {
+    font-weight: 600;
+    text-align: center;
+    margin: 15px 0;
+}
+
+#support-section h2 {
+    font-size: 2.2em;
+    margin: 15px;
+}
+
+#support-section p {
+    font-size: 1.1em;
+    margin: 0px 15px 5px 15px;
+}

@@ -1,0 +1,111 @@
+<?php include "views/shared/header.phtml"; ?>
+
+<script src="/assets/js/components/_product.component.js" type="text/javascript"></script>
+
+    <section id="homepage">
+        <div class="slider">
+            <div id="bkg-elem1"></div>  
+            <div id="deco">
+                <div id="info">
+                    <div id="text">
+                        <span>Abbigliamento</span>
+                        <span>Uomo</span>
+                    </div>
+                    <div id="btn-cont"><button class="btn btn-dark rounded-0">ACQUISTA</button></div>
+                </div>
+                <div class="img-canvas"></div>
+            </div>
+        </div>
+        <div class="promotions container">
+            <div class="header">
+                <span>Promozioni</span>
+            </div>
+            <div class="owlcar-cont">
+                <div class="promo-owlcar owl-carousel owl-theme">
+                    <?php foreach ($promoProducts as $prod) { ?>
+                        <div class="owl-img-cont">
+                            <my-product data-product="<? echo htmlentities(json_encode(
+                                [
+                                    'id' => $prod["ProductID"],
+                                    'img' => $prod["Images"][0],
+                                    'name' => $prod["Name"],
+                                    'price' => $prod["Price"],
+                                    'discount' =>  $prod["Discount"] ? $prod["Discount"] :  null,
+                                    'outOfStock' => $prod["OutOfStock"]
+                                ]
+                            )); ?>">
+                            </my-product>
+                        </div>
+                    <?php } ?>
+                </div>
+                <div class="owl-nav-btn owl-nav-btn-prev remove-btn btn-disabled" id="promo-owl-nav-prev"><i class="fa fa-chevron-left"></i></div>
+                <div class="owl-nav-btn owl-nav-btn-next" id="promo-owl-nav-next"><i class="fa fa-chevron-right"></i></div>
+            </div>
+        </div>
+        <div id="category1" class="split-category-section p-l-25">
+            <div class="img-canvas"></div>
+            <div class="deco-col">
+                <a href="#">Clicca quì! Scopri la collezione Lorem</a>
+               <!--  <span>Lorem Ipsum</span><span>Dolorem</span>
+                <div class="btn-cont"><button class="btn btn-dark">Clicca per scoprire di più</button></div> -->
+            </div>
+        </div>
+        <div id="category2" class="split-category-section">
+            <div class="img-canvas"></div>
+            <div class="deco-col">
+                <a href="#">Clicca quì! Scopri la collezione Ipsum</a>
+               <!--  <span></span><span></span>
+                <div class="btn-cont"><button class="btn btn-dark"></button></div> -->
+            </div>
+        </div>
+        <div id="category3" class="split-category-section p-r-25">
+            <div class="img-canvas"></div>
+            <div class="deco-col">
+                <a href="#">Clicca quì! Scopri la collezione Dolor</a>
+                <!-- <span></span><span></span>
+                <div class="btn-cont"><button class="btn btn-dark"></button></div> -->
+            </div>
+        </div>
+        <div id="category4" class="full-width-category-section">
+            <div id="bkg-elem2"></div>
+            <div class="info">
+                <span>Abbigliamento</span>
+                <span>Donna</span>
+                <div class="btn-cont"><button class="btn btn-dark rounded-0">ACQUISTA</button></div>
+            </div>
+            <div class="img-canvas"></div>
+        </div>
+        <div class="suggestions container">
+            <div class="header">
+                <span>Suggerimenti</span>
+            </div>
+            <div class="owlcar-cont">
+                <div class="suggestions-owlcar owl-carousel owl-theme">
+                    <?php foreach ($suggestedProducts as $prod) { ?>
+                        <div class="owl-img-cont">
+                            <my-product data-product="<? echo htmlentities(json_encode(
+                                [
+                                    'id' => $prod["ProductID"],
+                                    'img' => $prod["Images"][0],
+                                    'name' => $prod["Name"],
+                                    'price' => $prod["Price"],
+                                    'discount' =>  $prod["Discount"] ? $prod["Discount"] :  null,
+                                    'outOfStock' => $prod["OutOfStock"]
+                                ]
+                            )); ?>">
+                            </my-product>
+                        </div>
+                    <?php } ?>
+                </div>
+                <div class="owl-nav-btn owl-nav-btn-prev remove-btn btn-disabled" id="sgst-owl-nav-prev"><i class="fa fa-chevron-left"></i></div>
+                <div class="owl-nav-btn owl-nav-btn-next" id="sgst-owl-nav-next"><i class="fa fa-chevron-right"></i></div>
+            </div>
+        </div>
+    </section>
+
+<script src="/node_modules/jquery/dist/jquery.min.js"></script>
+<script src="/node_modules/bootstrap/js/dist/util.js"></script>
+<script src="/node_modules/owl.carousel/dist/owl.carousel.min.js"></script>
+<script src="/assets/js/home.js"></script>
+
+<?php include "views/shared/footer.phtml"; ?>

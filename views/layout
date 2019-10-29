@@ -1,0 +1,28 @@
+<?php include "views/shared/header.phtml"; ?>
+
+    
+
+<?php include "views/shared/footer.phtml"; ?>
+
+
+// css breakpoints
+
+@media screen and (min-width: 320px) {
+
+}
+
+@media screen and (min-width: 710px) {
+
+}
+
+@media screen and (min-width: 960px) {
+
+}
+
+@media screen and (min-width: 1280px) {
+
+}
+
+@media screen and (min-width: 1600px) {
+    
+}

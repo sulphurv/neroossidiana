@@ -1,0 +1,211 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400, 500');
+@import url('https://fonts.googleapis.com/css?family=Titillium+Web:400,600,700');
+@import url('https://fonts.googleapis.com/css?family=Comfortaa&display=swap');
+
+@import '--variables.css';
+
+@import 'navbar.css';
+@import 'home.css';
+@import 'footer.css';
+@import 'products.css';
+@import 'product-details.css';
+@import 'cart.css';
+@import 'checkout.css';
+@import 'payment.css';
+@import 'login.css';
+@import 'signup.css';
+@import 'profile.css';
+@import 'profile-settings.css';
+@import 'profile-address.css';
+@import 'profile-orders.css';
+@import 'support.css';
+@import 'contact-us.css';
+@import 'thanks.css';
+@import 'admin.css';
+@import 'admin-login.css';
+@import 'admin-orders.css';
+@import 'admin-order-details.css';
+@import 'admin-products.css';
+@import 'admin-product-manager.css';
+
+html {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    min-height: 100%;
+    background: #fff !important;
+    font-size: 16px;
+}
+
+#main-container {
+    padding-top: var(--nav-height);
+    background: #fff;
+}
+
+.container {
+    padding: 0;
+}
+
+.remove {
+    display: none !important;
+}
+
+.hide {
+    opacity: 0;
+}
+
+.center-align {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);  
+}
+
+.invalid-input {
+    border-color: #dc3545 !important;
+    padding-right: 2.25rem !important;
+    background-repeat: no-repeat !important;
+    background-position: center right calc(2.25rem / 4) !important;
+    background-size: calc(2.25rem / 2) calc(2.25rem / 2) !important;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='%23dc3545' viewBox='-2 -2 7 7'%3e%3cpath stroke='%23d9534f' d='M0 0l3 3m0-3L0 3'/%3e%3ccircle r='.5'/%3e%3ccircle cx='3' r='.5'/%3e%3ccircle cy='3' r='.5'/%3e%3ccircle cx='3' cy='3' r='.5'/%3e%3c/svg%3E") !important;
+}
+
+select:focus, input:focus, textarea:focus {
+    border-color: black !important;
+    box-shadow: 0 0 0 3px rgba(0,0,0,.3) !important;
+}
+
+.btn-dark {
+    background: black !important;
+}
+
+.btn-white {
+    border: 2px solid black !important;
+}
+
+.btn-white:hover {
+    background: black;
+    color: white !important;
+}
+
+.btn-white:focus {
+    box-shadow: none !important;
+}
+
+#load-background-layer {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    z-index: 10000;
+    background: white;
+}
+
+.no-focus:focus {
+    box-shadow: none !important;
+}
+
+#banner {
+    height: 90px;
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    margin-top: 60px;
+    background: #141414;
+    color: white;
+}
+
+#banner div:first-child {
+    width: 150px;
+    display: flex;
+    justify-content: center;
+}
+
+#banner div:first-child img {
+    max-height: 100%;
+}
+
+#banner div:last-child {
+    width: 100%;
+}
+
+#banner div:last-child h1 {
+    margin: 0;
+    font-family: var(--display-font);
+}
+
+.green, .yellow, .red, .black {
+    position: relative;
+}
+
+.green::before, .yellow::before, .red::before, .black::before {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: -20px;
+    content: "";
+    border-radius: 50%;
+    width: 12px;
+    height: 12px;
+}
+
+.green {
+    color: green;
+}
+
+.green::before {
+    background: green;
+}
+
+.yellow {
+    color: goldenrod;
+}
+
+.yellow::before {
+    background: goldenrod;
+}
+
+.red {
+    color: red;
+}
+
+.red::before {
+    background: red;
+}
+
+.black {
+    color: #494949;
+    font-weight: bold;
+}
+
+.black::before {
+    background: #494949;
+}
+
+@media screen and (min-width: 320px) {
+    #banner div:last-child h1 {
+        text-align: center;
+    }
+}
+
+@media screen and (min-width: 960px) {
+    #banner div:last-child h1 {
+        text-align: unset;
+    }
+}
+
+@media screen and (max-width: 1280px) {
+    .container {
+        max-width: 100% !important;
+    }
+}
+
+@media screen and (min-width: 1600px) {
+    .container {
+        max-width: 1420px;
+    }
+}

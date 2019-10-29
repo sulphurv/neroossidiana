@@ -1,0 +1,61 @@
+<nav id="top-navbar">
+    <div id="navbar-cont">
+        <div id="main">
+            <div id="navbar-brand"><a class="center-align" href="/"><img src="/assets/icons/logo.svg" alt="logo"></a></div>
+            <div id="gender-nav">
+                <div id="male"><a class="text-dark center-align underline" href="/Prodotti/Uomo/Page1">Uomo</a></div>
+                <div id="female"><a class="text-dark center-align underline" href="/Prodotti/Donna/Page1">Donna</a></div>
+                <!-- dropdown -->
+                <div id="dropd-cont" class="remove"></div>
+            </div>
+            <div id="search-section">
+                <form class="form-inline" action="/Cerca" method="POST">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <button class="fa fa-search input-group-text rounded-0" id="basic-addon1"></button>
+                        </div>
+                        <input type="text" class="search-input form-control rounded-0" placeholder="Cerca" aria-label="Cerca" name="Search">
+                    </div>
+                </form>
+                <div id="suggestions-cont" style="display: none;"></div>
+            </div>
+            <div id="account"><a class="center-align" href="/Login"><i class="fa fa-user-circle"></i></a></div>
+            <div id="lang-sel"><img class="center-align" src="/assets/icons/it.svg" alt="italiano icona"></div>
+            <div id="shopping-cart"><a class="center-align" href="/Carrello"><i class="fa fa-shopping-bag" aria-hidden="true"></i></a></div>
+            <div id="menu-toggle">
+                <input type="checkbox" />
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </div>
+</nav>
+<div id="overlay" class="remove"></div>
+<ul id="side-menu" class="menu">
+    <ul class="menu-list">
+        <li class="back"><i class="fa fa-long-arrow-left"></i></li>
+    </ul>
+    <ul class="menu-nav">
+        <li class="search-cont">
+            <div class="search">
+                <form class="form-inline" action="/Cerca" method="POST">
+                    <div class="input-group">
+                        <input type="text" id="dropd-search" class="search-input form-control rounded-0" placeholder="Cerca" name="Search" aria-label="Cerca">
+                        <div class="input-group-append">
+                            <button class="fa fa-search input-group-text rounded-0" id="search-button"></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </li>
+        <li class="account-lang">
+            <div class="side-menu-account">
+                <a href="/Login"><i class="fa fa-user-circle center-align"></i></a>
+            </div>
+            <div class="side-menu-lang">
+                <img src="/assets/icons/it.svg" alt="italiano icona">
+            </div>
+        </li>
+    </ul>
+</ul>

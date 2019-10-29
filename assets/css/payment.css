@@ -1,0 +1,194 @@
+#payment {
+    height: 100%;
+}
+
+#payment #cont1 label,
+#payment #cont1 .card-body,
+#payment #shipping-address p,
+#payment .btn,
+#payment #cont3 p,
+#payment #submit-error span {
+    font-family: var(--nav-font-family);
+}
+
+#payment .btn {
+    font-weight: bold;
+}
+
+#payment form {
+    display: grid;
+    padding: 15px;
+    grid-column-gap: 15px;
+    background: #f1f1f1;
+    height: 100%;
+}
+
+#payment #cont1 {
+    width: 100%;
+}
+
+#payment #submit-error {
+    margin-top: 15px;
+}
+
+#payment #submit-error span {
+    display: inline-block;
+    color: red;
+    font-size: 1.1em;
+}
+
+#payment #cont1 .card-error {
+    padding: 5px;
+    border: 1px solid red;
+}
+
+#payment #cont1 .card-header {
+    padding: 0;
+    height: 65px;
+    background: black;
+}
+
+#payment #cont1 .card-body {
+    font-size: 1.1em;
+}
+
+#payment #cont1 label {
+    height: 100%;
+    width: 100%;
+    line-height: 65px;
+    vertical-align: middle;
+    padding-left: 15px;
+    color: white;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.custom-control-label::after, .custom-radio .custom-control-label::before {
+    left: -15px;
+	top: 50%;
+	transform: translateY(-50%);
+}
+
+.custom-radio .custom-control-input:checked ~ .custom-control-label::after {
+	background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23000'/%3e%3c/svg%3e");
+}
+
+.custom-control-input:checked ~ .custom-control-label::before {
+	border-color: darkgray;
+	background-color: white;
+}
+
+#payment #cont2 {
+    background: white;
+    margin-bottom: 15px;
+}
+
+#payment #shipping-address {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    min-height: 100%;
+}
+
+#payment #cont2 .header {
+    height: 45px;
+    margin-bottom: 5px;
+}
+
+
+#payment #shipping-address div:nth-child(1) p {
+    margin: 0 15px;
+    line-height: 45px;
+    font-size: 1.4em;
+    font-weight: bold;
+    border-bottom: 1px solid black;
+}
+
+#payment #shipping-address p {
+    margin: 5px auto 0 15px;
+    font-size: 1.1em;
+}
+
+#payment #shipping-address #ship-add-btn-cont {
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px 15px 0 15px;
+    border-top: 1px solid black;
+}
+
+#payment #cont3 #submit-btn {
+    margin-top: 15px;
+}
+
+#payment #cont3 {
+	padding: 15px;
+	background: white;
+}
+
+#payment #cont3 .flex {
+	display: flex;
+	flex-wrap: nowrap;
+	align-items: center;
+	height: 45px;
+}
+
+#payment #cont3 p {
+    margin: 0;
+    font-size: 1.1em;
+}
+
+#payment #cont3 .flex p:nth-child(1) {
+	text-align: left;
+	padding-left: 15px;
+	flex: 0 0 75%;
+}
+
+#payment #cont3 .flex p:nth-child(2) {
+	text-align: right;
+	padding-right: 15px;
+	flex: 0 0 25%;
+}
+
+#payment #cont3 #delivery-costs-2 {
+	box-shadow: 0px 1px 0px 0px rgba(0,0,0,1), 0px 6px 0px 0px rgba(255,255,255,1), 0px 7px 0px 0px rgba(0,0,0,1);
+	margin-bottom: 7px;
+}
+
+#payment #cont3 #total-2 {
+    border-bottom: 1px solid black;
+}
+
+@media screen and (min-width: 320px) {
+    #payment form {
+        grid-template-columns: 1fr;
+    }
+
+    #payment #cont1, #payment #cont-wrapper {
+        grid-column: span 1;
+    }
+
+    #payment #shipping-address .btn {
+        width: 30%;
+    }
+}
+
+@media screen and (min-width: 960px) {
+    #payment form {
+        grid-template-columns: 2fr 1fr;
+    }
+
+    #payment #cont1 {
+        grid-column: 1 / 2;
+    }
+
+    #payment #cont-wrapper {
+        grid-column: 2 / 3;
+    }
+
+    #payment #shipping-address .btn {
+        width: 50%;
+    }
+}

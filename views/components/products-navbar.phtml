@@ -1,0 +1,38 @@
+<!-- accedo alle variabili "navData" e "routePar" dalla view "products.phtml" nella quale questo componente è inserito -->
+
+<?php if ($navData) { ?>
+
+<nav class="accordion" id="products-nav">
+
+    <?php 
+    $i = 0;
+    foreach($navData[$routePar["Gender"]] as $category => $types) { ?>
+
+    <div class="category" id=<?=strtolower($category)?>>
+        <a href=<?="/Prodotti/". $routePar["Gender"] ."/$category/Page1"?>
+            data-toggle="collapse"
+            data-target=<?="#category" . $i?>
+            aria-expanded="true" 
+            aria-controls=<?="category" . $i?>><?=$category?></a>
+    </div>
+    <div class="links collapse <?php echo ($routePar["Category"] === $category) ? "show" : ""; ?>"
+        id=<?="category" . $i?> 
+        aria-labelledby=<?=strtolower($category)?>
+        data-parent="#products-nav">
+
+    <?php foreach($types as $type) { ?>
+        
+        <div class="link <?php echo ($routePar["Type"] === implode("-", explode(" ", $type))) ? "active" : ""; ?>">
+            <a href=<?="/Prodotti/". $routePar["Gender"] ."/$category/" . implode("-", explode(" ", $type)) . "/Page1"?>><?=$type?></a>
+        </div>
+
+    <?php } ?>
+
+    </div>
+
+    <?php $i++;
+    } ?>
+
+</nav>
+
+<?php } ?>

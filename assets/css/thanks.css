@@ -1,0 +1,15 @@
+#thanks {
+    height: 100%;
+    display: flex;
+    align-items: flex-start;
+}
+
+#thanks div {
+    width: 100%;
+}
+
+#thanks h1 {
+    margin-top: 100px;
+    font-family: var(--nav-font-family);
+    text-align: center;
+}

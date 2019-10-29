@@ -1,0 +1,197 @@
+    <?php include "views/shared/admin-header.phtml"; ?>
+
+    <section id="product-manager" class="container">
+        <h1>Gestione Prodotto</h1>
+
+        <div class="row" id="name-cont">
+            <div class="form-group col-12">
+                <label for="name">Nome</label>
+                <input type="text" class="form-control rounded-0" name="Name" id="name" pattern="^( ?[\w-]+ ?)+$" value="<?php echo isset($productData) ? $productData["Name"] : ''; ?>" required>
+                <div class="invalid-message"></div>
+            </div>
+        </div>
+
+        <div class="row" id="select-gender-cont">
+            <div class="form-group col-12">
+                <label for="">Genere</label>
+                <select name="Gender" id="select-gender" class="form-control rounded-0" required>
+                    <option value="">Genere</option>
+                    <option value="Uomo">Uomo</option>
+                    <option value="Donna">Donna</option>
+                </select>
+                <div class="invalid-message"></div>
+            </div>
+        </div>
+
+        <div class="row" id="select-category-cont">
+            <div class="form-group col-12">
+                <label for="select-type">Categoria</label>
+                <select name="Type" class="form-control rounded-0" id="select-category" required="true">
+                    <option value="" selected>Seleziona un genere</option>
+                </select>
+            </div>
+            <form action="" method="" class="col-12 collapse" id="add-category-cont">
+                <div class="form-group">
+                    <label for="add-new-category">Nuova categoria</label>
+                    <input type="text" class="form-control rounded-0" id="add-new-category" name="Category" pattern="^[a-zA-Z]+$">
+                    <div class="invalid-message"></div>
+                </div>
+                <div class="submit-cont">
+                    <input type="submit" value="Aggiungi" class="btn btn-sm btn-dark rounded-0">
+                </div>
+            </form>
+            <div class="accordion-header" id="category-accordion-header" data-toggle="collapse" data-target="#add-category-cont" aria-expanded="false" style="display: none;"><i class="fa fa-plus"></i><span>Aggiungi nuova categoria</span></div>
+        </div>
+
+        <div class="row" id="select-type-cont">
+            <div class="form-group col-12">
+                <label for="select-type">Sezione</label>
+                <select name="Type" class="form-control rounded-0" id="select-type" required="true">
+                    <option value="" selected>Seleziona una categoria</option>
+                </select>
+            </div>
+            <form action="" method="" class="col-12 collapse" id="add-new-type-form">
+                <div class="form-group">
+                    <label for="add-new-type">Nuova sezione</label>
+                    <input type="text" class="form-control rounded-0" id="add-new-type" name="Type">
+                    <div class="invalid-message"></div>
+                </div>
+                <div class="submit-cont">
+                    <input type="submit" value="Aggiungi" class="btn btn-sm btn-dark rounded-0">
+                </div>
+            </form>
+            <div class="accordion-header" id="type-accordion-header" data-toggle="collapse" data-target="#add-new-type-form" aria-expanded="false" style="display: none;"><i class="fa fa-plus"></i><span>Aggiungi nuova sezione</span></div>
+        </div>
+
+        <div class="row">
+            <div class="form-group col-6">
+                <label for="price">Prezzo</label>
+                <input type="number" class="form-control rounded-0" id="price" name="Price" value="<?php echo isset($productData) ? $productData["Price"] : ''; ?>" required>
+                <div class="invalid-message"></div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group col-6">
+                <label for="discount">Sconto</label>
+                <input type="number" class="form-control rounded-0" id="discount" name="Discount" value="<?php echo isset($productData) ? $productData["Discount"] : ''; ?>">
+                <div class="invalid-message"></div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group col-6">
+                <label for="description">Descrizione</label>
+                <textarea type="text" class="form-control rounded-0" id="description" name="Description" required><?php echo isset($productData) ? $productData["Description"] : ''; ?></textarea>
+                <div class="invalid-message"></div>
+            </div>
+        </div>
+
+        <form action="" method="POST" enctype="multipart/form-data" class="row" id="images-form">
+            <div class="form-group">
+                <label for="images">Immagini</label>
+                <input type="file" class="form-control-file rounded-0" id="images" name="Images[]" multiple="multiple">
+                <div class="col-12" id="thumb-imgs-cont"></div>
+                <div class="invalid-message"></div>
+            </div>
+        </form>
+
+        <?php if ($productData["ProductID"]) { ?>
+
+            <div id="modify-prod-images-cont">
+
+                <?php
+                $images = explode(", ", $productData["Images"]);
+
+                foreach ($images as $imageURL) { ?>
+
+                    <div class="img-cont">
+                        <img src="/assets/images/<?= $imageURL ?>" data-url="<?= $imageURL ?>">
+                        <div class="img-overlap-inception"></div>
+                        <div class="img-overlap"></div>
+                        <i class="fa fa-times"></i>
+                    </div>
+
+                <?php } ?>
+
+            </div>
+
+        <?php } ?>
+
+        <div id="product-details" class="row">
+
+            <div class="size-details-wrapper col-4" data-number="0">
+
+                <form class="size-detail" action="/" method="POST" name="size-details-form">
+                    <div class="row">
+                        <div class="form-group col-12">
+                            <label for="size">Taglia:</label>
+                            <input type="text" name="Size" class="form-control size-input rounded-0" pattern="^(([x|X]*?[sl|SL]{1})|[m|M]{1})|([0-9]+)">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-12 color-input-group">
+                            <label for="color">Colore (hex):</label>
+                            <input type="text" class="col-8 form-control rounded-0 color-input" name="Color" placeholder="eg. #000" pattern="^#[0-9a-fA-F]{3,6}$" oninput="showColorSample(event)">
+                            <div class="col-4 color-sample-cont"><span class="color-sample"></span></div>
+                            <div class="invalid-message"></div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-12">
+                            <label for="stock">Quantità:</label>
+                            <input type="number" class="form-control rounded-0 stock-input" name="Stock" required>
+                            <div class="invalid-message"></div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-12">
+                            <label for="availability">Disponibilità:</label>
+                            <select name="Availability" class="form-control rounded-0 availability-input" required>
+                                <option value="" selected>Seleziona disponibilità</option>
+                                <option value="green">Disponibile</option>
+                                <option value="yellow">In arrivo 1 settimana</option>
+                                <option value="red">In arrivo 4 settimane</option>
+                                <option value="black">Esaurito</option>
+                            </select>
+                            <div class="invalid-message"></div>
+                        </div>
+                    </div>
+
+                    <input type="submit" value="Aggiungi" class="btn btn-sm btn-dark rounded-0">
+                </form>
+
+                <div class="size-details-selected" style="display: none;">
+                    <div class="details-info-cont">
+                        <div class="size-selected">Taglia:<span></span></div>
+                        <div class="color-selected">Colore:<span></span></div>
+                        <div class="quantity-selected">Quantità:<span></span></div>
+                        <div class="availability-selected">Disponibilità:<span></span></div>
+                    </div>
+                    <div class="btn-cont">
+                        <button class="btn btn-white btn-sm rounded-0">Modifica</button>
+                    </div>
+                    <i class="fa fa-times"></i>
+                </div>
+            </div>
+
+            <div id="add-size-detail" class="col-4"><span>Aggiungi taglia</span></div>
+        </div>
+
+        <div id="prod-manager-submit-btn">
+            <button class="btn btn-white rounded-0" id="submit-btn"><?php echo $productData["ProductID"] ? 'Conferma modifiche' : 'Aggiungi prodotto' ?></button>
+            <div class="invalid-message"></div>
+        </div>
+    </section>
+
+    <?php echo "<script>var productData = " . json_encode($productData) . "</script>"; ?>
+
+    <script src="/node_modules/jquery/dist/jquery.slim.min.js"></script>
+    <script src="/node_modules/bootstrap/js/dist/util.js"></script>
+    <script src="/node_modules/bootstrap/js/dist/collapse.js"></script>
+    <script src="/assets/js/admin-product-manager.js"></script>
+
+    <?php include "views/shared/admin-footer.phtml"; ?>

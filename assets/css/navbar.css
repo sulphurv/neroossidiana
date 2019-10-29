@@ -1,0 +1,613 @@
+.center {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+#top-navbar {
+    position: fixed;
+    width: 100%;
+    z-index: 100;
+    left: 0;
+    top: 0;
+}
+
+#top-navbar #navbar-cont {
+    min-height: var(--nav-height);
+    border-bottom: 1px solid black;
+}
+
+#top-navbar #main {
+    background: black;
+}
+
+#top-navbar #main > div {
+    background: #fff;
+}
+
+#top-navbar .fa-user-circle,
+#top-navbar .fa-shopping-bag {
+    font-size: 28px !important;
+}
+
+#top-navbar .center-text {
+    text-align: center;
+}
+
+#top-navbar #navbar-brand,
+#top-navbar #account,
+#top-navbar #lang-sel,
+#top-navbar #shopping-cart {
+    position: relative;
+    height: var(--nav-height);
+}
+
+#top-navbar #navbar-brand img {
+    width: 55px;
+}
+
+#top-navbar #gender-nav {
+    background: black;
+    height: var(--nav-height);
+}
+
+#top-navbar #male,
+#top-navbar #female {
+    position: relative;
+    display: inline-block;
+    font-weight: 500;
+    width: 50%;
+}
+
+#top-navbar #male,
+#top-navbar #female,
+#top-navbar .category,
+#top-navbar .links {
+    font-family: var(--nav-font-family);
+}
+
+#top-navbar #male a,
+#top-navbar #female a {
+    font-size: 1.6em;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+#top-navbar #male:hover .underline::before,
+#top-navbar #female:hover .underline::before {
+    visibility: visible;
+}
+
+.underline {
+    position: relative;
+}
+
+.underline::before {
+    content: "";
+    height: 2px;
+    width: 100%;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    visibility: hidden;   
+    background: black;
+}
+
+.underline:hover::before {
+    visibility: visible;
+}
+
+#top-navbar #search-section {
+    position: relative;
+}
+
+#top-navbar form {
+    height: 100%;
+    justify-content: center;
+}
+
+#top-navbar .input-group-prepend {
+    order: 2;
+    background: #000 !important;
+}
+
+#top-navbar .input-group-prepend button {
+    background-color: #fff !important;
+}
+
+#top-navbar form .form-control {
+    font-family: var(--nav-font-family) !important;
+    font-size: .9rem;
+    font-weight: 400;
+    color: black !important;
+}
+
+#top-navbar form .form-control:focus {
+    border-color: black !important;
+    box-shadow: 0 0 0 .15rem rgba(0, 0, 0, 0.25)
+}
+
+#top-navbar form .fa-search {
+    font-size: 1.3rem !important;
+    color: black;
+}
+
+#top-navbar form .fa-search:hover {
+    cursor: pointer;
+}
+
+#top-navbar #suggestions-cont {
+    max-height: calc(40px * 7);
+    position: absolute;
+    top: calc(100% - 5px);
+    left: calc(50% - 28px);
+    transform: translateX(-50%);
+    border: 1px solid black;
+    border-top: none;
+    background: white;
+    z-index: 1000;
+    overflow: scroll;
+}
+
+#top-navbar #suggestions-cont .search-item p {
+    margin: 0;
+    padding: 0 15px;
+    min-height: 40px;
+    line-height: 40px;
+}
+
+#top-navbar #suggestions-cont .search-item p:hover {
+    background: #f1f1f1;
+}
+
+#top-navbar #suggestions-cont .search-item span {
+    margin-left: 7px;
+    font-size: 14px;
+    background: transparent;
+}
+
+#top-navbar #account .fa {
+    color: black !important;
+}
+
+#top-navbar #lang-sel img, .menu img {
+    width: 26px;
+    border: 2px solid black;
+    border-radius: 50%;
+}
+
+#dropd-cont {
+    position: absolute;
+    top: var(--nav-height);
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+}
+
+#top-navbar .dropdown {
+    display: flex;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 230px;
+    background: black;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    box-shadow: 0px 10px 20px -6px rgba(0,0,0,0.65);
+    transition: all .35s ease-in-out;
+}
+
+#top-navbar .dropdown * {
+    color: black;
+}
+
+#top-navbar .dropdown .dropd-section {
+    display: flex;
+    flex: 0 0 60%;
+    font-size: .9rem;
+    border-right: 1px solid black;
+}
+
+#top-navbar .category {
+    flex: 0 0 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    background: #e8e8e8;
+    font-size: 1.3em;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+#top-navbar .category div {
+    height: 60px;
+    line-height: 60px;
+    text-align: right;
+    padding: 0 30px;
+}
+
+#top-navbar .category div i {
+    visibility: hidden;
+}
+
+.active-category {
+    background: #fff;
+}
+
+.active-category a {
+    color: #000;
+    transition: none !important;
+}
+
+.active-category .fa-chevron-right {
+    font-size: 0.8em;
+    margin-left: 5px;
+    visibility: visible !important;
+}
+
+#top-navbar .links {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    flex: 0 0 60%;
+    padding-left: 15px;
+    background: white;
+}
+
+#top-navbar .link {
+    width: 50%;
+    flex: 0 0 45px;
+    line-height: 45px;
+    font-size: 16px;
+}
+
+#top-navbar .link:hover a {
+    text-decoration: underline;
+}
+
+#top-navbar #dropd-img {
+    flex: 0 0 40%;
+    background: #fff;
+}
+ 
+#top-navbar a {
+    text-decoration: none;
+    color: #232323;
+    transition: color 0.3s ease;
+}
+ 
+#top-navbar #menu-toggle {
+    position: relative;
+    line-height: var(--nav-height);
+    vertical-align: middle;
+    flex: 0 0 100px;
+    z-index: 1;
+    
+    -webkit-user-select: none;
+    user-select: none;
+}
+ 
+#top-navbar #menu-toggle input {
+    display: block;
+    width: 40px;
+    height: 32px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    
+    cursor: pointer;
+    transform: translate(-50%, -50%);
+    opacity: 0; /* hide this */
+    z-index: 2; /* and place it over the hamburger */
+    
+    -webkit-touch-callout: none;
+}
+ 
+ /*
+  * Just a quick hamburger
+  */
+#top-navbar #menu-toggle span {
+    display: block;
+    width: 33px;
+    height: 4px;
+    margin: 0 auto 0 auto;
+    position: relative;
+    top: 28px;
+    background: #000 !important;
+    
+    z-index: 1;
+    transform-origin: 4px 0px;
+    
+    transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
+                background 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
+                opacity 0.55s ease;
+}
+ 
+#top-navbar #menu-toggle span:first-of-type {
+    margin-top: -8px;
+    margin-bottom: 4px;
+    transform-origin: 0% 0%;
+}
+
+#top-navbar #menu-toggle span:last-of-type {
+    margin-top: 4px;
+    transform-origin: 0% 100%;
+}
+
+#top-navbar #menu-toggle input:checked ~ span:first-of-type {
+    transform: rotate(45deg) translate(-2px, -2px);
+}
+ 
+ /*
+  * But let's hide the middle one.
+  */
+#top-navbar #menu-toggle input:checked ~ span:nth-of-type(2) {
+    opacity: 0;
+    transform: rotate(0deg) scale(0.2, 0.2);
+}
+ 
+ /*
+  * Ohyeah and the last one should go the other direction
+  */
+#top-navbar #menu-toggle input:checked ~ span:last-of-type {
+    transform: rotate(-45deg) translate(-2px, 2px);
+}
+ 
+ /*
+  * Make this absolute positioned
+  * at the top left of the screen
+  */
+.menu {
+    position: fixed;
+    top: calc(var(--nav-height) + 2px);
+    right: 0;
+    height: calc(100% - var(--nav-height));
+
+    display: flex;
+    flex-direction: column;
+    align-content: space-between;
+    justify-content: space-between;
+
+    padding: 0 15px;
+    background: white;
+    border-left: 2px solid black;
+    border-bottom: 2px solid black;
+    list-style-type: none;
+    -webkit-font-smoothing: antialiased;
+    /* to stop flickering of text in safari */
+
+    transform-origin: 0% 0%;
+    transform: translateX(100%);
+}
+
+.menu li a,
+.menu .search-cont input {
+    font-family: var(--nav-font-family);
+}
+
+.menu ul {
+    padding: 0;
+}
+ 
+.menu li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 15px;
+    border-bottom: 1px solid black;
+}
+
+.menu li a {
+    position: relative;
+}
+
+.menu li .next {
+    flex: 0 0 50px;
+}
+
+.menu li .fa {
+    font-size: 2rem;
+    cursor: pointer;
+}
+
+.menu .back {
+    height: 45px;
+}
+
+.menu .search-cont {
+    border-top: 1px solid black;
+    height: 90px;
+}
+
+.menu .search-cont #search-button {
+    font-size: 1.3rem;
+    color: black;
+    background: white;
+}
+
+.menu .account-lang {
+    padding: 0 !important;
+    height: 50px !important;
+    border-bottom: none;
+}
+
+.menu .account-lang div {
+	flex: 0 0 50%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.menu .account-lang .side-menu-account {
+    margin-left: 5px;
+    justify-content: flex-start;
+    border-right: 1px solid black;
+}
+
+.menu .account-lang .side-menu-account a {
+    width: 30px;
+}
+
+.menu .account-lang .side-menu-account i {
+    font-size: 28px !important;
+    color: black !important;
+}
+
+.forwards {
+   animation-fill-mode: forwards;
+}
+
+.menu-slide-in-out {
+    animation-name: SlideInOut;
+    animation-duration: .5s;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-in-out;
+}
+
+@keyframes SlideInOut {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(100%);
+    }
+}
+
+.menu-slide-out-in {
+    animation-name: SlideOutIn;
+    animation-duration: .5s;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-in-out;
+}
+
+@keyframes SlideOutIn {
+    from {
+        transform: translateX(100%);
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+
+.dropd-fade-in {
+    animation: FadeIn .35s ease-in-out 0s 1;
+}
+
+.top {
+    z-index: 1001 !important;
+}
+
+.bottom {
+    z-index: 999 !important;
+}
+
+.transition {
+    transition: transform 0.5s ease-in-out;
+}
+
+#overlay {
+    height: calc(100% - var(--nav-height));
+    width: 100%;
+    position: fixed;
+    top: calc(var(--nav-height) + 2px);
+    z-index: 500;
+    background: rgba(0, 0, 0, 0.6);
+}
+
+@media screen and (min-width: 320px) {
+    #top-navbar #main {
+        display: flex;
+        justify-content: space-between;
+        background: white;
+    }
+
+    #top-navbar #gender-nav, 
+    #top-navbar #search-section ,
+    #top-navbar #account, 
+    #top-navbar #lang-sel, 
+    #top-navbar #shopping-cart {
+        display: none;
+    }
+
+    #top-navbar #navbar-brand {
+        flex: 0 0 150px;
+    }
+
+    .menu {
+        width: 100%;
+    }
+        
+    .menu li {
+        height: 45px;
+        font-size: 1rem;
+    }
+
+    .menu li .fa {
+        font-size: 1.6rem;
+    }
+}
+
+@media screen and (min-width: 500px) {
+    .menu {
+        width: 350px;
+    }
+    
+    .menu li {
+        height: 60px;
+        font-size: 22px;
+    }
+
+    .menu li .fa {
+        font-size: 2rem;
+    }
+}
+
+@media screen and (min-width: 960px) {
+
+    #top-navbar #main {
+        display: flex;
+    }
+
+    #top-navbar #navbar-brand {
+        border-right: none;
+    }
+
+    #top-navbar #search-section ,
+    #top-navbar #account, 
+    #top-navbar #lang-sel, 
+    #top-navbar #shopping-cart {
+        display: block;
+    }
+
+    #top-navbar #gender-nav {
+        flex: 0 0 300px;
+        display: flex;
+    }
+
+    #top-navbar #search-section {
+        width: 100%;
+    }
+
+    #top-navbar #account {
+        flex: 0 0 80px;
+    }
+
+    #top-navbar #lang-sel {
+        flex: 0 0 80px;
+    }
+
+    #top-navbar #shopping-cart {
+        flex: 0 0 100px;
+        position: relative;
+    }
+
+    #top-navbar #menu-toggle {
+        display: none;
+    }
+
+    .menu, #overlay {
+        display: none;
+    }
+}

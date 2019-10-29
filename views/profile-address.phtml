@@ -1,0 +1,71 @@
+<?php include "views/shared/account-header.phtml"; ?>
+
+<section id="profile-address" class="container">
+    <form action="/Profilo/Indirizzi" method="POST" class="needs-validation" id="profile-address-form" novalidate>
+        <div class="form-row">
+            <div class="col-md-6 mb-3">
+                <input type="text" class="form-control rounded-0" id="first-name" placeholder="Nome" value="<?php echo isset($_SESSION["Customer"]["FirstName"]) ? $_SESSION["Customer"]["FirstName"] : '' ?>" name="FirstName" required pattern="^[a-zA-Z]+(( {1}[a-zA-Z]+)+)?$">
+                <div class="invalid-feedback"></div>
+            </div>
+            <div class="col-md-6 mb-3">
+                <input type="text" class="form-control rounded-0" id="last-name" placeholder="Cognome" value="<?php echo isset($_SESSION["Customer"]["LastName"]) ? $_SESSION["Customer"]["LastName"] : '' ?>" name="LastName" required pattern="^[a-zA-Z]+(( {1}[a-zA-Z]+)+)?$$">
+                <div class="invalid-feedback"></div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col-md-9 mb-3">
+                <input type="text" class="form-control rounded-0" id="address" placeholder="Il tuo indirizzo" value="<?php echo isset($_SESSION["Customer"]["Address1"]) ? $_SESSION["Customer"]["Address1"] : '' ?>" name="Address1" required pattern="^[a-zA-Z]+(( {1}[a-zA-Z]+)+)?$">
+                <div class="invalid-feedback"></div>
+            </div>
+            <div class="col-md-3 mb-3">
+                <input type="text" class="form-control rounded-0" id="address-num" placeholder="N°" value="<?php echo isset($_SESSION["Customer"]["Address1Num"]) ? $_SESSION["Customer"]["Address1Num"] : '' ?>" name="Address1Num" required pattern="^[0-9]+$">
+                <div class="invalid-feedback"></div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col-md-12 mb-3">
+                <input type="text" class="form-control rounded-0" id="address2" placeholder="Indirizzo di fatturazione alternativo" value="<?php echo isset($_SESSION["Customer"]["Address2"]) ? $_SESSION["Customer"]["Address2"] : '' ?>" name="Address2" pattern="^[\w]+( {1}[\w]+)+ {1}[0-9]+?$">
+                <div class="invalid-feedback"></div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col-md-9 mb-3">
+                <input type="text" class="form-control rounded-0" id="city" placeholder="Città" value="<?php echo isset($_SESSION["Customer"]["City"]) ? $_SESSION["Customer"]["City"] : '' ?>" name="City" required pattern="^[a-zA-Z]+(( {1}[a-zA-Z]+)+)?$">
+                <div class="invalid-feedback"></div>
+            </div>
+            <div class="col-md-3 mb-3">
+                <input type="text" class="form-control rounded-0" id="post-code" value="<?php echo isset($_SESSION["Customer"]["ZipCode"]) ? $_SESSION["Customer"]["ZipCode"] : '' ?>" placeholder="CAP" name="ZipCode" required pattern="^[0-9]+$">
+                <div class="invalid-feedback"></div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col-md-6 mb-3">
+                <select class="custom-select rounded-0" id="countries" name="Country" required>
+                    <option value="" <?php echo !isset($_SESSION["Customer"]["Country"]) ? 'selected' : '' ?>>Paese</option>
+                    <?php foreach ($countries as $country) {
+                        $country = (explode(":", trim($country)))[1]; ?>
+                    <option value="<?= $country ?>" <?php echo isset($_SESSION["Customer"]["Country"]) && $_SESSION["Customer"]["Country"] == $country ? 'selected' : '' ?>><?= $country ?></option>
+                    <?php 
+                } ?>
+                </select>
+                <div class="invalid-feedback"></div>
+            </div>
+            <div class="col-md-6 mb-3">
+                <input type="text" class="form-control rounded-0" id="telephone" placeholder="Telefono" name="Phone" pattern="^[0-9]+([ |\-|/]{1}[0-9]+)?$">
+                <div class="invalid-feedback"></div>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <button type="submit" class="btn btn-dark rounded-0 col-6 col-xl-5" disabled>Aggiungi</button>
+        </div>
+        <div class="row justify-content-center">
+            <?php if ($updated) { ?>
+                <p class="text-success mt-3">L'indirizzo è stato aggiornato con successo</p>
+            <?php }?>
+        </div>
+    </form>
+</section>
+
+<script src="/assets/js/profile-address.js"></script>
+
+<?php include "views/shared/account-footer.phtml"; ?>

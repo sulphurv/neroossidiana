@@ -1,0 +1,48 @@
+<?php 
+use NeroOssidiana\Pagination;
+
+include "views/shared/header.phtml"; ?>
+
+<section id="products" class="container">
+    <?php if ($routePar) { ?>
+    <div id="page-info">
+        <p><span id="gender-info">
+            <?=$routePar["Gender"]?>
+        </span><span class="separator">|</span><?php if (isset($routePar["Category"])) { ?><span id="category-info">
+            <?=$routePar["Category"]?>
+        </span><span class="separator">|</span><?php } if (isset($routePar["Type"])) { ?><span id="type-info">
+            <?=$routePar["Type"]?>
+        </span><?php } ?></p>
+    </div>
+    <?php } ?>
+
+    <?php 
+    if (count($products) > 0) {
+
+    include "views/components/products-navbar.phtml"; ?>
+
+    <div id="products-cont">
+
+    <?php foreach($products as $product) { ?>
+
+        <?php include "views/components/product.phtml"; ?>
+        
+    <?php } ?>
+
+    </div>
+
+    <?php
+        if ($pagingInfo && count($products) > $pagingInfo["itemsPerPage"]) {
+            echo (new Pagination($pagingInfo))->create();
+        }
+    } else { ?>
+
+        <div id="product-not-found">
+            <h1>Nessun prodotto trovato</h1>
+        </div>
+
+    <?php }; ?>
+    
+</section>
+
+<?php include "views/shared/footer.phtml"; ?>

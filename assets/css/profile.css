@@ -1,0 +1,259 @@
+#profile {
+    display: grid;
+    padding: 15px;
+}
+
+#profile #profile-header h2,
+#profile #nav p,
+#profile-summary #account p,
+#profile-summary #address p,
+#profile-summary #address a,
+#profile-summary #orders p,
+#profile-summary #orders a {
+    font-family: var(--nav-font-family);
+}
+
+#profile #profile-header {
+    grid-column: 1 / -1;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+#profile #profile-header div {
+    display: flex;
+    height: calc(100% - 15px);
+    width: 75px;
+    margin-left: 10px;
+}
+
+#profile #profile-header div img {
+    height: 100%;
+}
+
+#profile #profile-header h2 {
+    margin-bottom: 0;
+    margin-left: 15px;
+    font-size: 40px;
+}
+
+#profile #nav {
+    border-top: 1px solid black;
+}
+
+#profile #nav a {
+    height: 45px;
+    color: #000;
+}
+
+#profile #nav div {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    height: 45px;
+    border-bottom: 1px solid black;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+}
+
+#profile #nav p {
+   margin: 0;
+   margin-left: 15px;
+   font-size: 1.2em;
+}
+
+#profile #profile-data {
+    padding: 15px;
+    border: 1px solid black;
+}
+
+#profile-summary > div {
+    margin-bottom: 15px;
+    background: rgb(247, 247, 247);
+    border-bottom: 1px solid black;
+}
+
+#profile-summary p {
+    margin: 0;
+    margin-left: 15px;
+}
+
+#profile-summary .header {
+    display: inline-block;
+    padding-right: 5px;
+    line-height: 40px;
+    font-size: 1.2em;
+    font-weight: bold;
+    border-bottom: 1px solid black;
+}
+
+#profile-summary .no-data {
+    font-size: 1.3em;
+    font-weight: bolder;
+}
+
+#profile-summary .btn {
+    margin: 15px;
+}
+
+#profile-summary #account p {
+    line-height: 40px;
+}
+
+#profile-summary #account p span {
+    font-weight: bold;
+}
+
+#profile-summary #address {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+#profile-summary #address {
+    min-height: 250px;
+}
+
+#profile-summary #address p span:last-child {
+    margin-left: 7px;
+}
+
+#profile-summary #address p span:first-child {
+    font-weight: bold;
+}
+
+#profile-summary #address a {
+    font-weight: bold;
+}
+
+#profile-summary #address div {
+    display: flex;
+}
+
+#profile-summary #address #cap {
+    margin-left: 10px;
+}
+
+#profile-summary #address #city span, #profile-summary #address #cap span {
+    margin: 0;
+}
+
+#profile-summary #orders {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    min-height: 250px;
+}
+
+#profile-summary #orders .no-data {
+    position: relative;
+    top: 75px;
+}
+
+#profile-summary #orders .order {
+    height: 60px;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    margin: 15px;
+    background: white;
+    box-shadow: 0px 1px 2px -1px rgb(0,0,0);
+}
+
+#profile-summary #orders .order div {
+    display: flex;
+    align-items: center;
+}
+
+#profile-summary #orders .order span {
+    margin-right: 5px;
+    font-weight: bold;
+}
+
+#profile-summary #orders a {
+    font-weight: bold;
+}
+
+@media screen and (min-width: 320px) {
+    #profile {
+        grid-template-columns: 1fr;
+        grid-template-rows: 75px auto auto;
+    }
+
+    #profile #profile-header {
+        grid-row: 1 / 2;
+    }
+
+    #profile #nav {
+        grid-column: span 1;
+        grid-row: 3 / 4;
+        margin: 15px 0;
+    }
+
+    #profile #nav div {
+        justify-content: center;
+    }
+
+    #profile #nav div p {
+        margin: 0;
+    }
+
+    #profile #profile-data {
+        grid-column: span 1;
+        grid-row: 2 / 3;
+    }
+}
+
+@media screen and (min-width: 960px) {
+    #profile {
+        grid-template-columns: 1fr;
+        grid-template-rows: 90px 45px auto;
+    }
+
+    #profile #profile-header {
+        grid-row: 1 / 2;
+    }
+
+    #profile #nav {
+        grid-row: 2 / 3;
+        display: flex;
+        margin: 0;
+    }
+
+    #profile #nav a {
+        width: 25%;
+    }
+
+    #profile #profile-data {
+        grid-row: 3 / 4;
+        grid-column: span 1;
+        border: 1px solid black;
+        background: #ffffff;
+    }
+}
+
+@media screen and (min-width: 1280px) {
+    #profile {
+        grid-template-columns: 70% 30%;
+        grid-template-rows: 90px auto;
+    }
+
+    #profile #nav {
+        grid-column: 2 / 3;
+        grid-row: 2 / 3;
+        flex-wrap: wrap;
+        align-content: flex-start;
+        margin-left: 15px;
+    }
+
+    #profile #nav a {
+        width: 100%;
+    }
+
+    #profile #profile-data {
+        grid-column: 1 / 2;
+        grid-row: 2 / 3;
+        border: 1px solid black;
+    }
+}

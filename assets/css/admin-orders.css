@@ -1,0 +1,104 @@
+#admin-orders {
+   height: 100%;
+}
+
+#admin-orders #orders-cont {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    background: #f1f1f1;
+}
+
+#admin-orders #orders-cont #header {
+    height: 100px;
+}
+
+#admin-orders #orders-cont h1 {
+    line-height: 100px;
+    text-align: center;
+}
+
+#admin-orders #orders-cont #orders-tools-nav {
+    height: 45px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: nowrap;
+    background: #fff;
+}
+
+#admin-orders #orders-cont #orders-tools-nav #tools-txt {
+    margin-right: 15px;
+    margin-left: 15px;
+}
+
+#admin-orders #orders-cont #orders-tools-nav div:not(#tools-txt) {
+    padding: 8px 15px;
+    margin: 0 5px;
+}
+
+#admin-orders #orders-cont #orders-tools-nav div a {
+    color: black;
+}
+
+#admin-orders #orders-cont #orders-tools-nav {}
+
+#admin-orders #orders-cont .order,
+#admin-orders #orders-cont #orders-head {
+    flex: 0 0 60px;
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    margin: 15px;
+    padding: 5px;
+    background: #fff;
+    border: 1px solid black;
+}
+
+#admin-orders #orders-cont #orders-head {
+    flex: 0 0 45px;
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    border: 0;
+}
+
+#admin-orders #orders-cont #orders-head div,
+#admin-orders .order span,
+#admin-orders .order a {
+    text-align: center;
+}
+
+#admin-orders #num,
+#admin-orders .order-num {
+    width: 10%;
+    border-right: 1px solid black;
+}
+
+#admin-orders #date,
+#admin-orders .order-date,
+#admin-orders #amount,
+#admin-orders .order-amount {
+    width: 20%;
+    border-right: 1px solid black;
+}
+
+#admin-orders #shipped,
+#admin-orders .order-shipped {
+    width: 35%;
+    border-right: 1px solid black;
+}
+
+#admin-orders #space,
+#admin-orders .order a {
+    width: 15%;
+}
+
+#admin-orders .order span {
+    border-right: none !important;
+}
+
+#admin-orders .order a {
+    color: black;
+}

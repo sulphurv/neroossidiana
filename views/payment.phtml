@@ -1,0 +1,118 @@
+<?php include "views/shared/header.phtml"; ?>
+
+<section id="payment" class="container">
+    <form method="POST">
+
+        <div id="cont1">
+            <div class="accordion" id="accordionExample">
+                <div class="card" id="paypal-card">
+                    <div class="card-header rounded-0" id="headingOne">
+                        <div class="mb-0">
+                            <div class="custom-control custom-radio" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                <input type="radio" id="paypal-select" class="radio custom-control-input" name="order-total" value="<?= $total + $shippingCosts ?>" onchange="this.form.action = '/Pagamento/paypal' ">
+                                <label class="custom-control-label" for="paypal-select">Paypal</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                        <div class="card-body">
+                            Paypal è un metodo sicuro e veloce per effettuare pagamenti tramite web, per maggiori informazioni cliccare <a href="https://www.paypal.com" target="_blank">qui</a>.
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="card">
+                    <div class="card-header" id="headingTwo">
+                        <div class="mb-0">
+                            <div class="custom-control custom-radio" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input">
+                                <label class="custom-control-label" for="customRadio1">Toggle this custom radio</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                        <div class="card-body">
+                            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header" id="headingThree">
+                        <div class="mb-0">
+                            <div class="custom-control custom-radio" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input">
+                                <label class="custom-control-label" for="customRadio1">Toggle this custom radio</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                        <div class="card-body">
+                            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                        </div>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+
+        <div id="cont-wrapper">
+
+            <div id="cont2">
+                <div id="shipping-address">
+                    <div class="header">
+                        <p>Indirizzo</p>
+                    </div>
+                    <div>
+                        <p><span></span><?= $_SESSION["Customer"]["FirstName"] . " " . $_SESSION["Customer"]["LastName"] ?></p>
+                    </div>
+                    <div>
+                        <p><span></span><?= $_SESSION["Customer"]["Address1"] . " " . $_SESSION["Customer"]["Address1Num"] ?></p>
+                    </div>
+                    <?php if ($_SESSION["Customer"]["Address2"]) { ?>
+                        <div>
+                            <p><span></span><?= $_SESSION["Customer"]["Address2"] ?></p>
+                        </div>
+                    <?php } ?>
+                    <div>
+                        <p><span></span><?= $_SESSION["Customer"]["City"] . " " . $_SESSION["Customer"]["ZipCode"] ?></p>
+                    </div>
+                    <div>
+                        <p><span></span><?= $_SESSION["Customer"]["Country"] . " " . $_SESSION["Customer"]["Phone"] ?></p>
+                    </div>
+                        <div id="ship-add-btn-cont">
+                            <a href="<?php echo $_SESSION["loggedIn"] ? '/Profilo/Indirizzi' : '/Checkout'; ?>" class="btn btn-sm btn-dark text-white rounded-0">Modifica</a>
+                        </div>
+                </div>
+                <div id="billing-address"></div>
+            </div>
+
+            <div id="cont3">
+                <div id="subtotal" class="flex">
+                    <p>Subtotale (<?= count($_SESSION["Cart"]) ?> Articoli)</p>
+                    <p><?= $total ?>€</p>
+                </div>
+                <div id="delivery-costs-2" class="flex">
+                    <p>Spedizione</p>
+                    <p>+ <?= $shippingCosts ?></p>
+                </div>
+                <div id="total-2" class="flex">
+                    <p>Totale</p>
+                    <p><?= $total + $shippingCosts ?>€</p>
+                </div>
+                <div class="row justify-content-center">
+                    <button class="btn btn-white rounded-0" id="submit-btn" type="submit">Effettua pagamento</button>
+                </div>
+                <div class="row justify-content-center remove" id="submit-error">
+                    <span>Selezionare un metodo di pagamento</span>
+                </div>
+            </div>
+
+        </div>
+
+    </form>
+</section>
+
+<script src="/node_modules/jquery/dist/jquery.slim.min.js"></script>
+<script src="/node_modules/bootstrap/js/dist/util.js"></script>
+<script src="/node_modules/bootstrap/js/dist/collapse.js"></script>
+<script src="/assets/js/payment.js"></script>
+
+<?php include "views/shared/footer.phtml"; ?>

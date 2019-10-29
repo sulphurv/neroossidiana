@@ -1,0 +1,37 @@
+<div class="product">
+
+    <?php if (!$product["OutOfStock"]) { ?>
+
+    <a class="center-align" href="<?= "/Dettagli-Prodotto/" . $product["ProductID"] ?>"></a>
+
+    <?php } else { ?>
+
+    <span class="center-align out-of-stock">Esaurito</span>
+
+    <?php } ?>
+
+    <div class="img-cont">
+        <div class="img-canvas" style="background-image: url('/assets/images/<?php echo (explode(", ", $product["Images"])[0]); ?>')"></div>
+    </div>
+
+    <?php if ($product["Discount"]) { ?>
+
+        <div class="discount"><span class="center-align">-<?= $product["Discount"] ?>%</span></div>
+        
+    <?php } ?>
+
+    <div class="description">
+        <p class="product-name"><?= $product["Name"] ?></p>
+        <p class="price">
+            <span class="<?= $product["Discount"] ? "line-through" : "" ?>"><?= $product["Price"] ?>€</span>
+
+            <?php if ($product["Discount"] && !$product["OutOfStock"]) { ?>
+
+                <span class="discounted-price"><?= ($product["Price"] - (($product["Price"] * $product["Discount"]) / 100)) ?>€</span>
+
+            <?php } ?>
+
+        </p>
+    </div>
+    <div class="layer"></div>
+</div>

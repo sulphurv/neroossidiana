@@ -1,0 +1,74 @@
+<?php include "views/shared/account-header.phtml"; ?>
+
+<section id="profile-summary" class="container">
+
+    <div id="account">
+        <p class="header">Dettagli profilo</p>
+        <p id="username"><span>Username: </span><?= $user["Username"] ?></p>
+        <p id="email"><span>Email: </span><?= $user["Email"] ?></p>
+        <p id="join-date"><span>Creazione profilo: </span><?= implode("/", array_reverse(explode("-", $user["JoinDate"]))) ?></p>
+    </div>
+
+    <div id="address">
+        <div>
+            <p class="header">Indirizzi</p>
+        </div>
+
+        <?php if ($customer) { ?>
+
+        <p><span>Nome: </span><?= ucfirst($customer["FirstName"]) ?><span><?= ucfirst($customer["LastName"]) ?></span></p>
+        <p><span>Via: </span><?= ucfirst($customer["Address1"]) ?><span><?= "n°" . $customer["Address1Num"] ?></span></p>
+
+        <?php if ($customer["Address2"]) { ?>  
+
+        <p><?= ucfirst($customer["Address2"]) ?></p>
+
+        <?php } ?>
+
+        <div>
+            <p id="city"><span>Città: </span><?= ucfirst($customer["City"]) ?></p>
+            <p id="cap"><span>Cap: </span><?=$customer["ZipCode"] ?></p>
+        </div>
+        <p><span>Stato: </span><?= ucfirst($customer["Country"]) ?><span><?= $customer["Phone"] ?></span></p>
+        <a href="/Profilo/Indirizzi" class="rounded-0 btn btn-sm btn-dark text-white col-6 col-sm-4 col-md-3">Modifica</a>
+
+        <?php } else { ?>
+
+        <p class="no-data">Nessun indirizzo inserito</p>
+        <a href="/Profilo/Indirizzi" class="rounded-0 btn btn-sm btn-dark text-white col-6 col-sm-4 col-md-3">Aggiungi</a>
+
+        <?php } ?>
+
+    </div>
+
+    <div id="orders">
+        <div>
+            <p class="header">Ordini</p>
+        </div>
+    <?php 
+    if ($orders && count($orders) > 0) { 
+        
+        foreach($orders as $order) { ?>
+
+        <div class="order">
+            <div class="number"><p>N°<?= $order["Number"] ?></p></div>
+            <div class="date"><p><span>Data: </span><?= implode("/", array_reverse(explode("-", $order["Date"]))) ?></p></div>
+            <div class="amount"><p><span>Totale: </span><?= $order["Amount"] ?>€</p></div>
+            <div class="is-shipped"><p><span>Stato: </span><?= $order["Shipped"] ? "Spedito" : "In lavorazione"; ?></p></div>
+
+            <div><a href="/Profilo/Ordini" class="rounded-0 btn btn-sm btn-dark">Dettagli</a></div>
+        </div>
+
+    <?php
+        }
+    } else {
+    ?>
+
+        <p class="no-data">Nessun ordine effettuato</p>
+
+    <?php } ?>
+    
+    </div>
+</section>
+
+<?php include "views/shared/account-footer.phtml"; ?>

@@ -1,0 +1,39 @@
+<?php include "views/shared/admin-header.phtml"; ?>
+
+    <section id="admin-orders" class="container">
+        <div id="orders-cont">
+
+            <div id="header">
+                <h1>Gestione ordini</h1>
+            </div>
+
+            <div id="orders-tools-nav">
+                <div id="tools-txt">Filtra:</div>
+                <div id="pending-stu"><a href="/Admin/Ordini/In-lavorazione">In lavorazione</a></div>
+                <div id="shipped-stu"><a href="/Admin/Ordini/Spediti">Spediti</a></div>
+            </div>
+
+            <div id="orders-head">
+                <div id="num">N°</div>
+                <div id="date">Data</div>
+                <div id="amount">Importo</div>
+                <div id="shipped">Stato</div>
+                <div id="space"></div>
+            </div>
+
+            <?php foreach($clientOrders as $order) { ?>
+
+            <div class="order">
+                <span class="order-num"><?= $order["OrderID"] ?></span>
+                <span class="order-date"><?= $order["Date"] ?></span>
+                <span class="order-amount"><?= $order["Amount"] ?>€</span>
+                <span class="order-shipped"><?= $order["Shipped"] ? "Spedito" : "In lavorazione" ?></span>
+                <a href="/Admin/Dettagli-ordine/<?= $order["OrderID"] ?>" class="details-link">Dettagli</a>
+            </div>
+
+            <?php } ?>
+
+        </div>
+    </section>
+
+<?php include "views/shared/admin-footer.phtml"; ?>

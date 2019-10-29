@@ -1,0 +1,150 @@
+#profile-orders {
+    background: #f1f1f1;
+}
+
+#profile-orders .row {
+    margin: 0;
+}
+
+#profile-orders .header p,
+#profile-orders .product .prod-details p,
+#profile-orders .total p,
+#profile-orders #empty span {
+    font-family: var(--nav-font-family);
+}
+
+#profile-orders .order {
+    border: 1px solid black;
+    background: white;
+    margin-bottom: 30px;
+}
+
+#profile-orders p {
+    margin-bottom: 0;
+}
+
+#profile-orders .header {
+	display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: black;
+    height: 45px;
+    padding: 0 15px;
+}
+
+#profile-orders .header p {
+    color: white;
+    font-size: 1.1em;
+}
+
+#profile-orders .header #state {
+    font-weight: bold;
+}
+
+#profile-orders .product {
+    height: 170px;
+    margin: 15px;
+    border: 1px solid black;
+    background: white;
+}
+
+#profile-orders .product .img-cont {
+    flex: 0 0 150px;
+    height: 100%;
+    padding: 10px;
+}
+
+#profile-orders .product .img-cont .img-canvas {
+    height: 100%;
+    width: 100%;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+#profile-orders .product .prod-details {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 15px;
+}
+
+#profile-orders .product .prod-details .detail {
+    margin-bottom: 5px;
+}
+
+#profile-orders .product .prod-details p {
+    font-size: 1.1em;
+}
+
+#profile-orders .product .prod-details .name {
+    font-size: 1.1em;
+    font-weight: bold;
+    margin-bottom: 10px;
+    font-size: 1.2em;
+}
+
+#profile-orders .product .color {
+    display: flex;
+    align-items: center;
+    margin: 5px 0;
+}
+
+#profile-orders .product .color span {
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    margin-left: 10px;
+    border: 1px solid black;
+}
+
+#profile-orders .total {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    height: 35px;
+    padding: 0 15px;
+    background: white;
+    border-top: 1px solid black;
+}
+
+#profile-orders .total p {
+    font-size: 1.1em;
+}
+
+#profile-orders .total p span {
+    margin-left: 15px;
+    font-weight: bold;
+}
+
+#profile-orders #empty {
+    height: 300px;
+    display: flex;
+    align-items: center;
+}
+
+#profile-orders #empty span {
+    display: inline-block;
+    font-size: 1.4em;
+    font-weight: bold;
+}
+
+@media screen and (min-width: 20em) {
+
+}
+
+@media screen and (min-width: 35.5em) {
+
+}
+
+@media screen and (min-width: 48em) {
+
+}
+
+@media screen and (min-width: 64em) {
+
+}
+
+@media screen and (min-width: 80em) {
+    
+}

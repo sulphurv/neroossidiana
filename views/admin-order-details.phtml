@@ -1,0 +1,46 @@
+<?php include "views/shared/admin-header.phtml"; ?>
+
+<section id="admin-order-details" class="container">
+    <div id="details-cont">
+
+        <div id="header">
+            <h1>Gestione ordini</h1>
+        </div>
+
+        <div id="order-info-cont">
+            <div id="order-num">Ordine N°: <span><?= $orderData["OrderID"] ?></span></div>
+            <div id="order-date">Effettuato il: <span><?= implode("/", array_reverse(explode("-", $orderData["Date"]))) ?></span></div>
+            <div id="order-amount">Totale: <span><?= $orderData["Amount"] ?>€</span></div>
+        </div>
+
+        <?php foreach ($orderedProducts as $orderedProduct) { ?>
+
+            <div class="product">
+                <div class="img-canvas" style="background-image: url('/assets/images/<?= explode(", ", $orderedProduct["Images"])[0] ?>');"></div>
+                <div class="info">
+                    <div><span class="name"><?= $orderedProduct["Name"] ?></span></div>
+                    <div><span class="prev">Categoria: </span><span class="category"><?= $orderedProduct["Category"] ?></span></div>
+                    <div><span class="prev">Tipo: </span><span class="type"><?= $orderedProduct["Type"] ?></span></div>
+                    <?php if (isset($orderedProduct["Size"]) && $orderedProduct["Size"]) { ?>
+                        <div><span class="prev">Taglia: </span><span class="size"><?= strtoupper($orderedProduct["Size"]) ?></span></div>
+                    <?php } ?>
+                    <?php if (isset($orderedProduct["Color"]) && $orderedProduct["Color"]) { ?>
+                        <div class="color-cont"><span class="prev">Colore: </span><span class="color" style="background-color: <?= $orderedProduct["Color"] ?>;"></span></div>
+                    <?php } ?>
+                </div>
+            </div>
+
+        <?php } ?>
+
+    </div>
+
+    <form action="/Admin/Dettagli-ordine/<?= $orderID ?>" method="POST">
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" name="is-shipped" value="1" id="is-shipped" <?php echo $isShipped ? "checked" : "" ?>>
+            <label class="form-check-label" for="is-shipped">Spedito</label>
+        </div>
+        <button type="submit" class="btn btn-white rounded-0">Conferma</button>
+    </form>
+</section>
+
+<?php include "views/shared/admin-footer.phtml"; ?>

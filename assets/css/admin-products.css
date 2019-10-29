@@ -1,0 +1,456 @@
+@import 'admin-product.css';
+
+#admin-products {
+    height: 100%;
+    background: #f1f1f1;
+    padding-top: 70px;
+}
+
+#admin-products #admin-tools {
+    height: 70px;
+    width: 100%;
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    position: fixed;
+    top: 60px;
+    z-index: 1000;
+    background: white;
+    border-bottom: 1px solid black;
+}
+
+#admin-products #admin-tools #order-tool form,
+#admin-products #admin-tools #filter-tool,
+#admin-products #admin-tools #add-prod-tool {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
+}
+
+#admin-products #admin-tools #order-tool {
+    flex: 0 0 40%;
+    border-right: 1px solid black;
+}
+
+#admin-products #admin-tools #order-tool form {
+    justify-content: space-around;
+}
+
+#admin-products #admin-tools #order-tool select {
+    width: 200px;
+}
+
+#admin-products #admin-tools #order-tool #icon-cont {
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+#admin-products #admin-tools #order-tool #icon-cont .direction-radio {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    margin: 0 5px;
+    font-weight: 600;
+}
+
+#admin-products #admin-tools #order-tool #icon-cont .direction-radio input {
+    position: absolute;
+    z-index: -1;
+    opacity: 0; 
+}
+
+#admin-products #admin-tools #order-tool #icon-cont .direction-radio label {
+    height: 40px;
+    line-height: 40px;
+    margin: 0;
+}
+
+#admin-products #admin-tools #order-tool #icon-cont .direction-radio label::before {
+    height: 100%;
+    width: 100%;
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10;
+}
+
+#admin-products #admin-tools #order-tool #icon-cont .direction-radio label::after {
+    height: 100%;
+    width: 100%;
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 20;
+    cursor: pointer;
+}
+
+#admin-products #admin-tools #order-tool #icon-cont .direction-radio .custom-radio:checked ~ label::before {
+    background: black;
+}
+
+#admin-products #admin-tools #order-tool #icon-cont .direction-radio .custom-radio:checked ~ label .fa {
+    color: #fff !important;
+}
+
+#admin-products #admin-tools #order-tool #icon-cont .fa {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 15;
+    font-size: 1.2em;
+    cursor: pointer;
+}
+
+#admin-products #admin-tools #filter-tool {
+    flex: 0 0 35%;
+    border-right: 1px solid black;
+}
+
+#admin-products #admin-tools #filter-tool form {
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+#admin-products #admin-tools #filter-tool form .input-group-append {
+    order: 2;
+}
+
+#admin-products #admin-tools #filter-tool form .input-group-append span {
+    padding-top: 10px;
+    font-size: 1.4em;
+}
+
+#admin-products #admin-tools #filter-tool form #filter-input {
+    order: 1;
+    box-shadow: none !important;
+}
+
+#admin-products #admin-tools #filter-tool #input-cont {
+    position: relative;
+}
+
+#admin-products #admin-tools #filter-tool #dropdown {
+    width: 100%;
+    max-height: 200px;
+    position: absolute;
+    top: 47px;
+    left: 0;
+    overflow: hidden;
+    background: #fff;
+    box-shadow: 0px 2px 5px 1px rgba(0, 0, 0, 0.5);
+}
+
+#admin-products #admin-tools #filter-tool #dropdown .hint-elem {
+    height: 40px;
+    padding-left: 15px;
+    line-height: 40px;
+    cursor: pointer;
+}
+
+#admin-products #admin-tools #filter-tool #dropdown .hint-elem:hover {
+    background: #f1f1f1;
+}
+
+#admin-products #admin-tools #filter-tool #dropdown .hint-elem p {
+    margin: 0;
+}
+
+#admin-products #admin-tools #filter-tool #dropdown .hint-elem span {
+    margin-left: 7px;
+    color: #202020;
+    font-weight: bold;
+}
+
+#admin-products #admin-tools #add-prod-tool {
+    flex: 0 0 25%;
+}
+
+#admin-products #filter-by-color-tool {
+    height: 45px;
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    position: relative;
+    margin-top: 15px;
+    background: #fff;
+}
+
+#admin-products #filter-by-color-tool #spec {
+    margin: 0 15px;
+    line-height: 45px;
+}
+
+#admin-products #filter-by-color-tool form {
+    position: relative;
+    margin: 0 15px;
+    padding-left: 40px;
+    padding-right: 5px;
+    line-height: 45px;
+    color: black;
+    text-decoration: none;
+}
+
+#admin-products #filter-by-color-tool form div {
+    height: 8px;
+    width: 30px;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    border: 1px solid black;
+}
+
+#admin-products #filter-by-color-tool form .submit-input {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    cursor: pointer;
+}
+
+#admin-products #filter-by-color-tool form:hover div {
+    top: calc(50% + 1px);
+}
+
+#admin-products #filter-by-color-tool form:hover {
+    border-bottom: 1px solid black;
+}
+
+#admin-products #filter-by-color-tool #reset-btn {
+    height: 40px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 15px;
+    line-height: 35px;
+    padding: 0 7px;
+    margin-left: 30px;
+    font-size: 1.2em;
+    color: #000;
+    text-decoration: none;
+}
+
+#admin-products #products-cont {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    padding-bottom: 15px;
+}
+
+#admin-products #products-cont #products-head,
+#admin-products #products-cont .product {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    margin: 15px;
+    margin-bottom: 0;
+    padding: 5px;
+    background: #fff;
+}
+
+#admin-products #products-cont .product {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    border: 1px solid black;
+    margin-left: 30px;
+}
+
+#admin-products #products-cont .availability {
+    height: 90%;
+    width: 5px;
+    position: absolute;
+    top: 50%;
+    left: -18px;
+    transform: translateY(-50%);
+}
+
+#admin-products .b {
+    background-color: rgb(0, 0, 0);
+}
+
+#admin-products .grey {
+    background-color: rgb(130, 130, 130);
+}
+
+#admin-products .o {
+    background-color: rgb(220, 130, 0);
+}
+
+#admin-products .p {
+    background-color: rgb(150, 0, 170);
+}
+
+#admin-products .av-green {
+    background-color: rgb(45, 210, 0);
+}
+
+#admin-products #products-cont #products-head {
+    flex: 0 0 45px;
+    margin-left: 30px;
+    border: 0;
+}
+
+#admin-products #products-cont .product .info-cont {
+    flex: auto;
+    height: 60px;
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    margin-bottom: 0;
+    padding: 5px;
+}
+
+#admin-products #products-cont .product .details-cont {
+    flex: auto;
+    padding: 15px;
+    border-top: 1px solid black;
+}
+
+#admin-products #products-cont #products-head div,
+#admin-products #products-cont .product .info-cont div {
+    text-align: center;
+}
+
+#admin-products #num,
+#admin-products .product .prod-num {
+    flex: 0 0 10%;
+    border-right: 1px solid black;
+}
+
+#admin-products #name,
+#admin-products .product .prod-name {
+    flex: 0 0 20%;
+    border-right: 1px solid black;
+}
+
+#admin-products #gender,
+#admin-products .product .prod-gender {
+    flex: 0 0 15%;
+    border-right: 1px solid black;
+}
+
+#admin-products #category,
+#admin-products .product .prod-category {
+    flex: 0 0 15%;
+    border-right: 1px solid black;
+}
+
+#admin-products #type,
+#admin-products .product .prod-type {
+    flex: 0 0 15%;
+    border-right: 1px solid black;
+}
+
+#admin-products #price,
+#admin-products .product .prod-price {
+    flex: 0 0 15%;
+    border-right: 1px solid black;
+}
+
+#admin-products #space,
+#admin-products .product .show-details {
+    flex: 0 0 10%;
+}
+
+#admin-products #products-cont .product .info-cont div {
+    border-right: none;
+}
+
+#admin-products .product .show-details a {
+    color: black;
+}
+
+#admin-products .product .details-cont {
+    flex: 0 0 auto;
+    width: 100%;
+}
+
+#admin-products .product .details .discount {
+    height: 30px;
+}
+
+#admin-products .product .details .sizes {
+    min-height: 45px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    margin: 10px 0;
+}
+
+#admin-products .product .details .sizes .details-availability {
+    width: 70px;
+    height: 45px;
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px;
+    margin-right: 15px;
+}
+
+#admin-products .product .details .sizes .details-availability .color {
+    width: 22px;
+    height: 22px;
+    border: 1px solid black;
+}
+
+#admin-products .product .details .sizes .details-availability .size {
+    margin-right: 7px;
+}
+
+#admin-products .product .details-cont div span {
+    margin-left: 5px;
+    font-weight: bold;
+}
+
+#admin-products .product .details-cont .owl-car-cont {
+    width: 800px;
+    position: relative;
+    margin: 0 auto;
+    margin-top: 15px;
+    border-bottom: 1px solid black;
+}
+
+#admin-products .product .details-cont .owl-img-cont {
+    height: 200px;
+}
+
+#admin-products .product .details-cont .owl-car-cont .img-canvas {
+    height: 100%;
+    width: 200px;
+    background-clip: content-box;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+#admin-products .product .details-cont .btns-cont {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 15px;
+}
+
+#admin-products .product .details-cont .btns-cont #remove {
+    margin-top: 15px;
+    margin-right: 25px;
+}
+
+#admin-products .product .details-cont .btns-cont #remove:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+#admin-products .product .details-cont .btns-cont #remove .fa-times {
+    margin-right: 5px;
+    font-size: 1.2em;
+}

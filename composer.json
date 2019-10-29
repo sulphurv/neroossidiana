@@ -1,0 +1,9 @@
+{
+    "name": "neroossidiana",
+    "description": "ecommerce website",
+    "require": {
+        "slim/slim": "~3.0",
+        "slim/php-view": "^2.2",
+        "paypal/rest-api-sdk-php": "*"
+    }
+}

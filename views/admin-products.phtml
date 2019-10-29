@@ -1,0 +1,301 @@
+<?php include "views/shared/admin-header.phtml"; ?>
+
+<section id="admin-products">
+
+    <div id="admin-tools">
+        <div id="order-tool">
+            <form action="/Admin/Prodotti/Ordina/" method="GET">
+                <select class="custom-select rounded-0" name="column">
+                    <option value="ProductID" <?php (isset($order) && $order["column"] === "ProductID") || !isset($order) ? "selected" : ""; ?>>Numero</option>
+                    <option value="Name" <?php echo (isset($order) && $order["column"] === "Name") ? "selected" : ""; ?>>Nome</option>
+                    <option value="Gender" <?php echo (isset($order) && $order["column"] === "Gender") ? "selected" : ""; ?>>Genere</option>
+                    <option value="Category" <?php echo (isset($order) && $order["column"] === "Category") ? "selected" : ""; ?>>Categoria</option>
+                    <option value="Type" <?php echo (isset($order) && $order["column"] === "Type") ? "selected" : ""; ?>>Tipo</option>
+                    <option value="Price" <?php echo (isset($order) && $order["column"] === "Price") ? "selected" : ""; ?>>Prezzo</option>
+                    <option value="Availability" <?php echo (isset($order) && $order["column"] === "Availability") ? "selected" : ""; ?>>Disponibilità</option>
+                </select>
+                <div id="icon-cont">
+                    <div class="direction-radio">
+                        <input type="radio" name="direction" value="ASC" id="up" class="custom-radio" <?php echo (isset($order) && $order["direction"] === "ASC") || !isset($order) ? 'checked="checekd"' : ''; ?>>
+                        <label class="custom-label" for="up">
+                            <i class="fa fa-arrow-up"></i>
+                        </label>
+                    </div>
+                    <div class="direction-radio">
+                        <input type="radio" name="direction" value="DESC" id="down" class="custom-radio" <?php echo (isset($order) && $order["direction"] === "DESC") ? 'checked="checekd"' : ''; ?>>
+                        <label class="custom-label" for="down">
+                            <i class="fa fa-arrow-down"></i>
+                        </label>
+                    </div>
+                </div>
+                <div id="btn-cont-tool1">
+                    <input class="btn btn-sm btn-white rounded-0" type="submit" value="Ordina">
+                </div>
+            </form>
+        </div>
+        <div id="filter-tool">
+            <form action="/Admin/Prodotti/Filtra/" method="GET">
+                <div class="input-group-append">
+                    <input class="input-group-text rounded-0" id="product-filter" type="submit" value="Filtra">
+                </div>
+                <div id="input-cont">
+                    <input type="text" class="form-control rounded-0" id="filter-input" placeholder="Filtra" aria-describedby="product-filter" pattern="^( ?[\w-]+ ?)+$" name="keyword" value="<?php echo isset($filter["keyword"]) ? $filter["keyword"] : ""; ?>" autocomplete="off">
+                    <div id="dropdown" style="display: none;"></div>
+                </div>
+                <?php if (isset($filter["color"])) { ?>
+                    <input type="hidden" class="form-control rounded-0" name="color" value="<?= $filter['color'] ?>">
+                <?php } ?>
+                <div class="invalid-feedback">Valore input non valido.</div>
+            </form>
+        </div>
+        <div id="add-prod-tool">
+            <a href="/Admin/Gestione-prodotto/Aggiungi-prodotto" class="btn btn-sm btn-white rounded-0">Aggiungi prodotto</a>
+        </div>
+    </div>
+
+    <div id="filter-by-color-tool">
+        <div id="spec">Stato prodotti:</div>
+        <form action="/Admin/Prodotti/Filtra/" method="GET">
+            <div class="b"></div>
+            <span>Esauriti</span>
+            <input type="hidden" name="color" value="black">
+            <?php if (isset($filter["keyword"])) { ?>
+                <input type="hidden" name="keyword" value="<?= $filter["keyword"] ?>">
+            <?php } ?>
+            <input type="submit" class="submit-input">
+        </form>
+        <form action="/Admin/Prodotti/Filtra/" method="GET">
+            <div class="grey"></div>
+            <span>Taglie esaurite</span>
+            <input type="hidden" name="color" value="grey">
+            <?php if (isset($filter["keyword"])) { ?>
+                <input type="hidden" name="keyword" value="<?= $filter["keyword"] ?>">
+            <?php } ?>
+            <input type="submit" class="submit-input">
+        </form>
+        <form action="/Admin/Prodotti/Filtra/" method="GET">
+            <div class="o"></div>
+            <span>In arrivo</span>
+            <input type="hidden" name="color" value="orange">
+            <?php if (isset($filter["keyword"])) { ?>
+                <input type="hidden" name="keyword" value="<?= $filter["keyword"] ?>">
+            <?php } ?>
+            <input type="submit" class="submit-input">
+        </form>
+        <form action="/Admin/Prodotti/Filtra/" method="GET">
+            <div class="p"></div>
+            <span>Disponibili, taglie in arrivo</span>
+            <input type="hidden" name="color" value="purple">
+            <?php if (isset($filter["keyword"])) { ?>
+                <input type="hidden" name="keyword" value="<?= $filter["keyword"] ?>">
+            <?php } ?>
+            <input type="submit" class="submit-input">
+        </form>
+        <form action="/Admin/Prodotti/Filtra/" method="GET">
+            <div class="av-green"></div>
+            <span>Disponibili</span>
+            <input type="hidden" name="color" value="green">
+            <?php if (isset($filter["keyword"])) { ?>
+                <input type="hidden" name="keyword" value="<?= $filter["keyword"] ?>">
+            <?php } ?>
+            <input type="submit" class="submit-input">
+        </form>
+        <a href="/Admin/Prodotti" class="btn-white rounded-0" id="reset-btn">Reset</a>
+    </div>
+
+    <div id="products-cont">
+        <div id="products-head">
+            <div id="num">N°</div>
+            <div id="name">Nome</div>
+            <div id="gender">Genere</div>
+            <div id="category">Categoria</div>
+            <div id="type">Tipo</div>
+            <div id="price">Prezzo</div>
+            <div id="space"></div>
+        </div>
+
+        <?php foreach ($products as $product) { ?>
+
+            <div class="modal fade" id="remove-product-modal-<?= $product['ProductID'] ?>" tabindex="-1" role="dialog" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content rounded-0">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Sicuro di voler eliminare il prodotto?</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="rounded-0 btn btn-dark" onclick="$('#remove-product-modal-<?= $product['ProductID'] ?>').modal('hide')">Chiudi</button>
+                            <form action="/Admin/Prodotti/Rimuovi" method="POST">
+                                <input type="hidden" name="ProductID" value="<?= $product["ProductID"] ?>">
+                                <button type="submit" class="btn btn-danger rounded-0" id="confirm-remove">Rimuovi prodotto</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product">
+
+                <?php switch ($product["Availability"]) {
+                    case "black":
+                        echo "<span class='availability b'></span>";
+                        break;
+                    case "grey":
+                        echo "<span class='availability grey'></span>";
+                        break;
+                    case "orange":
+                        echo "<span class='availability o'></span>";
+                        break;
+                    case "purple":
+                        echo "<span class='availability p'></span>";
+                        break;
+                    case "green":
+                        echo "<span class='availability av-green'></span>";
+                        break;
+                    default:
+                        break;
+                } ?>
+
+                <div class="info-cont">
+                    <div class="prod-num"><?= $product["ProductID"] ?></div>
+                    <div class="prod-name"><?= $product["Name"] ?></div>
+                    <div class="prod-gender"><?= $product["Gender"] ?></div>
+                    <div class="prod-category"><?= $product["Category"] ?></div>
+                    <div class="prod-type"><?= $product["Type"] ?></div>
+                    <div class="prod-price"><?= $product["Price"] ?>€</div>
+                    <div class="show-details"><a href="#show-details-<?= $product["ProductID"] ?>" data-toggle="collapse">Dettagli</a></div>
+                </div>
+                <div class="details-cont collapse" id="show-details-<?= $product["ProductID"] ?>">
+                    <div class="details">
+                        <div class="sizes-cont"> Disponibilità taglie:
+                            <div class="sizes">
+
+                                <?php foreach ($product["Details"] as $detailAssoc) { ?>
+
+                                    <?php if ($detailAssoc["availability"] === "black") { ?>
+
+                                        <div class="details-availability" style="border: 3px solid rgb(0, 0, 0); <?php echo !$detailAssoc["color"] && !$detailAssoc["size"] ? 'background-color: rgb(0, 0, 0); height: 10px;': '' ?>">
+
+                                            <?php if ($detailAssoc["color"]) { ?>
+
+                                                <div class="color" style="background-color: <?= $detailAssoc["color"] ?>"></div>
+
+                                            <?php } ?>
+
+                                            <?php if ($detailAssoc["size"]) { ?>
+
+                                                <span class="size"><?= strtoupper($detailAssoc["size"]) ?></span>
+
+                                            <?php } ?>
+
+                                        </div>
+
+                                    <?php } ?>
+
+                                    <?php if ($detailAssoc["availability"] === "red") { ?>
+
+                                        <div class="details-availability" style="border: 3px solid rgb(200, 20, 0); <?php echo !$detailAssoc["color"] && !$detailAssoc["size"] ? 'background-color: rgb(200, 20, 0); height: 10px;': '' ?>">
+
+                                            <?php if ($detailAssoc["color"]) { ?>
+
+                                                <div class="color" style="background-color: <?= $detailAssoc["color"] ?>"></div>
+
+                                            <?php } ?>
+
+                                            <?php if ($detailAssoc["size"]) { ?>
+
+                                                <span class="size"><?= strtoupper($detailAssoc["size"]) ?></span>
+
+                                            <?php } ?>
+
+                                        </div>
+
+                                    <?php } ?>
+
+                                    <?php if ($detailAssoc["availability"] === "yellow") { ?>
+
+                                        <div class="details-availability" style="border: 3px solid rgb(220, 220, 0); <?php echo !$detailAssoc["color"] && !$detailAssoc["size"] ? 'background-color: rgb(220, 220, 0); height: 10px;': '' ?>">
+
+                                            <?php if ($detailAssoc["color"]) { ?>
+
+                                                <div class="color" style="background-color: <?= $detailAssoc["color"] ?>"></div>
+
+                                            <?php } ?>
+
+                                            <?php if ($detailAssoc["size"]) { ?>
+
+                                                <span class="size"><?= strtoupper($detailAssoc["size"]) ?></span>
+
+                                            <?php } ?>
+
+                                        </div>
+
+                                    <?php } ?>
+
+                                    <?php if ($detailAssoc["availability"] === "green") { ?>
+
+                                        <div class="details-availability" style="border: 3px solid rgb(20, 200, 0); <?php echo !$detailAssoc["color"] && !$detailAssoc["size"] ? 'background-color: rgb(20, 200, 0); height: 10px;': '' ?>">
+
+                                            <?php if ($detailAssoc["color"]) { ?>
+
+                                                <div class="color" style="background-color: <?= $detailAssoc["color"] ?>"></div>
+
+                                            <?php } ?>
+
+                                            <?php if ($detailAssoc["size"]) { ?>
+
+                                                <span class="size"><?= strtoupper($detailAssoc["size"]) ?></span>
+
+                                            <?php } ?>
+
+                                        </div>
+
+                                    <?php } ?>
+
+                                <?php } ?>
+
+                            </div>
+                        </div>
+
+                        <div class="discount">Sconto: <span><?php echo $product["Discount"] ? $product["Discount"] . "%" : "/"; ?></span></div>
+                    </div>
+                    <div class="images-cont">Immagini:
+                        <div class="owl-car-cont">
+                            <div class="product-images-owlcar owl-carousel owl-theme">
+                                <?php
+                                $images = explode(", ", $product["Images"]);
+                                foreach ($images as $image) {
+                                    ?>
+
+                                    <div class="owl-img-cont">
+                                        <div class="img-canvas" style="background-image: url('/assets/images/<?= $image ?>');"></div>
+                                    </div>
+
+                                <?php } ?>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="btns-cont">
+                        <a href="/Admin/Gestione-prodotto/Modifica/<?= $product["ProductID"] ?>" id="modify-btn" class="btn btn-sm btn-white rounded-0">Modifica</a>
+                        <div id="remove" onclick="$('#remove-product-modal-<?= $product['ProductID'] ?>').modal('show')"><i class="fa fa-times"></i>Rimuovi</div>
+                    </div>
+                </div>
+            </div>
+
+        <?php } ?>
+
+    </div>
+</section>
+
+<script src="/node_modules/jquery/dist/jquery.min.js"></script>
+<script src="/node_modules/bootstrap/js/dist/util.js"></script>
+<script src="/node_modules/bootstrap/js/dist/carousel.js"></script>
+<script src="/node_modules/bootstrap/js/dist/collapse.js"></script>
+<script src="/node_modules/bootstrap/js/dist/modal.js"></script>
+<script src="/node_modules/owl.carousel/dist/owl.carousel.min.js"></script>
+<script src="/assets/js/admin-products.js"></script>
+
+<?php include "views/shared/admin-footer.phtml"; ?>

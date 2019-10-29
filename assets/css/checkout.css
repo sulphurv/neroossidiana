@@ -1,0 +1,108 @@
+#checkout form {
+    display: grid;
+    background: #f1f1f1;
+    padding: 15px;
+    grid-column-gap: 15px;
+}
+
+#checkout #cont1 {
+    width: 100%;
+    padding: 15px;
+    background: white;
+}
+
+#checkout #cont1 .form-control2 {
+    display: block;
+    width: 100%;
+    height: calc(2.25rem + 2px);
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+#checkout #cont1 .form-control,
+#checkout #cont1 .form-check-label,
+#checkout #cont2 p,
+#checkout #cont2 #submit-btn {
+    font-family: var(--nav-font-family);
+}
+
+#checkout #cont2 #submit-btn {
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+#checkout #cont2 {
+	padding: 15px;
+	background: white;
+}
+
+#checkout #cont2 .flex {
+	display: flex;
+	flex-wrap: nowrap;
+	align-items: center;
+	height: 45px;
+}
+
+#checkout #cont2 p {
+    margin: 0;
+}
+
+#checkout #cont2 .flex p:nth-child(1) {
+	text-align: left;
+	padding-left: 15px;
+	flex: 0 0 75%;
+}
+
+#checkout #cont2 .flex p:nth-child(2) {
+	text-align: right;
+	padding-right: 15px;
+	flex: 0 0 25%;
+}
+
+#checkout #cont2 #delivery-costs-2 {
+	box-shadow: 0px 1px 0px 0px rgba(0,0,0,1), 0px 6px 0px 0px rgba(255,255,255,1), 0px 7px 0px 0px rgba(0,0,0,1);
+	margin-bottom: 7px;
+}
+
+#checkout #cont2 #total-2 {
+    border-bottom: 1px solid black;
+}
+
+@media screen and (min-width: 320px) {
+    #checkout form {
+        grid-template-columns: 1fr;
+    }
+
+    #checkout #cont1 {
+        grid-column: span 1;
+        margin-bottom: 15px;
+    }
+}
+
+@media screen and (min-width: 960px) {
+    #checkout form {
+        grid-template-columns: 2fr 1fr;
+    }
+
+    #checkout #cont1 {
+        margin-bottom: 0;
+    }
+}
+
+@media screen and (min-width: 1280px) {
+    #checkout #cont1 {
+        grid-column: 1 / 2;
+    }
+
+    #checkout #cont2-wrapper {
+        grid-column: 2 / 3;
+    }
+}
